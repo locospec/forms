@@ -1,6 +1,6 @@
 {
   "name": "site",
-  "version": "0.13.7",
+  "version": "0.13.8-canary.7ed8274.0",
   "private": true,
   "author": {
     "name": "Shrey Dhyani",
@@ -24,8 +24,7 @@
     "@docusaurus/preset-classic": "3.7.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
-    "@locospec/blueprint-react": "^0.5.0",
-    "@locospec/elements-react": "^0.20.7",
+    "@locospec/forms-react": "^0.20.7",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.16.4",

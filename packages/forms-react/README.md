@@ -11,13 +11,13 @@ The demo library on npm: https://www.npmjs.com/package/@try-auto/blueprint
 You can install it with npm (don't expect much fanciness):
 
 ```bash
-npm i @locospec/elements-react
+npm i @locospec/forms-react
 ```
 
 ## Usage
 
 ```javascript
-import { Button, Label, Input } from "@locospec/elements-react";
+import { Button, Label, Input } from "@locospec/forms-react";
 ```
 
 See this file for an example on using this library: https://github.com/receter/my-component-library-consumer/blob/main/src/App.tsx
