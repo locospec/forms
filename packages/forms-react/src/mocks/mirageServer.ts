@@ -10,6 +10,9 @@ export function makeServer() {
       // Mocking the /config endpoint
       this.post("/:resource/_config", (_, request) => {
         const resource = request.params.resource;
+        if (resource === "sample") {
+          return sample_view_config;
+        }
 
         if (resource === "auction-data" || resource === "auction-data-2") {
           return sample_view_config;

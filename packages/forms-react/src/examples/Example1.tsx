@@ -6,11 +6,16 @@ const ProviderExample = () => {
   const uischema = person.uischema;
   const initialData = person.data;
 
+  // console.log(">>>>>>>> SCHEMA", schema);
+  // console.log(">>>>>>>> uischema", uischema);
+  // console.log(">>>>>>>> initialData", initialData);
+
   return (
     <FormRenderer
       schema={schema}
       uischema={uischema}
       initialData={initialData}
+      formsConfig={{ endpoint: "/sample" }}
     />
   );
 };

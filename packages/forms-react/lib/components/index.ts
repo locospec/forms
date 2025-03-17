@@ -1,5 +1,5 @@
 // Types
-export type { FormRendererInterface } from "./FormRenderer";
+export type { FormRendererInterface } from "./src/FormRenderer";
 
 // Components
-export { FormRenderer } from "./FormRenderer";
+export { FormRenderer } from "./src/FormRenderer";
