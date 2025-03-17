@@ -1,0 +1,17 @@
+{
+  "name": "configs",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/locospec/ui.git"
+  },
+  "keywords": [
+    "configuration"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://github.com/locospec/ui#readme",
+  "description": "Configuration files for locospec ui"
+}

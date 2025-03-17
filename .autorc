@@ -1,0 +1,56 @@
+{
+  "author": {
+    "name": "LoCoSpec",
+    "email": "bot@locospec.com"
+  },
+  "baseBranch": "main",
+  "onlyPublishWithReleaseLabel": true,
+  "plugins": [
+    "all-contributors",
+    [
+      "npm",
+      {
+        "forcePublish": false
+      }
+    ],
+    [
+      "conventional-commits",
+      {
+        "defaultReleaseType": "patch"
+      }
+    ],
+    "released",
+    [
+      "omit-commits",
+      {
+        "subject": [
+          "(site)",
+          "[site]",
+          "(ci)",
+          "[ci]",
+          "(deps)",
+          "[deps]"
+        ],
+        "labels": [
+          "site",
+          "docs-site",
+          "deps"
+        ]
+      }
+    ],
+    [
+      "omit-release-notes",
+      {
+        "labels": [
+          "docs-site",
+          "ci-cd"
+        ]
+      }
+    ]
+  ],
+  "prereleaseBranches": [
+    "alpha",
+    "beta",
+    "next"
+  ]
+}

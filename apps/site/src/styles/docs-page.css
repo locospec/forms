@@ -1,0 +1,44 @@
+.docs-wrapper {
+  /* Give more breathing space to page content */
+  [class*="docItemContainer_"],
+  [class*="generatedIndexPage_"] {
+    @apply pt-1;
+  }
+
+  /* .container {
+    @apply md:px-0;
+  } */
+
+  /* Remove background from breadcrumbs, make them subtle */
+  .breadcrumbs__link:any-link:hover,
+  .breadcrumbs__item--active .breadcrumbs__link {
+    @apply !bg-transparent;
+  }
+  .breadcrumbs__link {
+    @apply p-0;
+  }
+  .theme-doc-breadcrumbs {
+    @apply sm:!mb-4;
+  }
+
+  /* Add divider under h1 */
+  header h1 {
+    @apply pb-4 border-0 border-b border-gray-200 border-solid dark:border-gray-700;
+  }
+
+  .table-of-contents {
+    @apply lg:!pt-1;
+  }
+}
+
+.docs-doc-page {
+  [class*="docItemCol_"] {
+    max-width: 85% !important;
+  }
+
+  .col--3 {
+    /* (15/100)*12 is 1.8, we gave 85% to above col */
+    --ifm-col-width: calc(1.8 / 12 * 100%) !important;
+    flex: 0 0 var(--ifm-col-width) !important;
+  }
+}
