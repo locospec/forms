@@ -1,5 +1,5 @@
-import { ShellSidebar } from "@locospec/blueprint-react";
+// import { ShellSidebar } from "@locospec/blueprint-react";
 
-export default function Sidebarshell(): JSX.Element {
-  return <ShellSidebar>Blueprint Page</ShellSidebar>;
-}
+// export default function Sidebarshell(): JSX.Element {
+//   return <ShellSidebar>Blueprint Page</ShellSidebar>;
+// }
