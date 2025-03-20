@@ -5,7 +5,7 @@ import { useFetchConfig } from "@/hooks";
 
 const queryClient = new QueryClient();
 
-interface FormsContextType {
+export interface FormsContextType {
   schema: any;
   uischema: any;
   initialData: any;
