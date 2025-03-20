@@ -12,7 +12,11 @@ const SubmitButton = ({ data }: any) => {
       className="px-4 py-2 text-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-sm"
       onClick={async () => {
         const res = await makeActionRequest(data);
-        console.log(">>>>> res is ", res);
+        if (res.success) {
+          alert("Success");
+        } else {
+          alert("Error");
+        }
       }}
     >
       Submit

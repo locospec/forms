@@ -66,6 +66,11 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     try {
       console.log("formErrors", formErrors);
 
+      if (formErrors.length > 0) {
+        console.log("Please resolve form errors");
+        throw new Error(`Error: ${formErrors.length} Errors found`);
+      }
+
       const response = await fetch(action_endpoint, {
         method: "POST",
         headers: {

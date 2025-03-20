@@ -57,6 +57,7 @@ export function makeServer() {
 
         if (resource === "sample") {
           return {
+            success: true,
             msg: `New Record Created in ${model}`,
             data: body,
           };
@@ -72,6 +73,7 @@ export function makeServer() {
 
         if (resource === "sample") {
           return {
+            success: true,
             msg: `Record Updated in ${model}`,
             data: body,
           };
