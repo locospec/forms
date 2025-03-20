@@ -1,6 +1,7 @@
 import { Response, createServer } from "miragejs";
 import { sample_view_config } from "./config";
 import { new_config } from "./newConfig";
+import { person } from "@jsonforms/examples";
 
 export function makeServer() {
   const server = createServer({
@@ -11,7 +12,32 @@ export function makeServer() {
       this.post("/:resource/_config", (_, request) => {
         const resource = request.params.resource;
         if (resource === "sample") {
-          return sample_view_config;
+          return {
+            name: "create_asset_type",
+            type: "action",
+            dbOp: "insert",
+            model: "asset_type",
+            label: "Create Asset Type",
+            attributes: {
+              name: {
+                type: "string",
+                label: "Name",
+                validations: [
+                  {
+                    type: "required",
+                    message: "Name is required",
+                  },
+                  {
+                    type: "regex:/^[a-zA-Z0-9 ]+$/",
+                    message: "Name should match the regex",
+                  },
+                ],
+              },
+            },
+            schema: person.schema,
+            uischema: person.uischema,
+            initialData: person.data,
+          };
         }
 
         if (resource === "auction-data" || resource === "auction-data-2") {
@@ -19,6 +45,36 @@ export function makeServer() {
         }
         if (resource === "auction-data-3") {
           return new_config;
+        }
+
+        return new Response(404, {}, { message: "Resource not found" });
+      });
+
+      this.post("/:resource/:model/_insert", (_, request) => {
+        const resource = request.params.resource;
+        const model = request.params.model;
+        const body = JSON.parse(request.requestBody);
+
+        if (resource === "sample") {
+          return {
+            msg: `New Record Created in ${model}`,
+            data: body,
+          };
+        }
+
+        return new Response(404, {}, { message: "Resource not found" });
+      });
+
+      this.post("/:resource/:model/_update", (_, request) => {
+        const resource = request.params.resource;
+        const model = request.params.model;
+        const body = JSON.parse(request.requestBody);
+
+        if (resource === "sample") {
+          return {
+            msg: `Record Updated in ${model}`,
+            data: body,
+          };
         }
 
         return new Response(404, {}, { message: "Resource not found" });

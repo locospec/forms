@@ -1,6 +1,10 @@
 export { FormRenderer } from "./components";
 export type { FormRendererInterface } from "./components";
 
+export { FormsContext, FormsProvider, FormsProviderBase } from "./context";
+import { useFormsContext } from "./context";
+export { useFormsContext };
+
 // export {
 //   materialAllOfControlTester,
 //   MaterialAllOfRenderer,

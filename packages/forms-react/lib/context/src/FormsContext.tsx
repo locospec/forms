@@ -1,11 +1,20 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useFetchConfig } from "@/hooks";
 
 const queryClient = new QueryClient();
 
-interface FormsContextType {}
+interface FormsContextType {
+  schema: any;
+  uischema: any;
+  initialData: any;
+  makeActionRequest: any;
+  isFetched: boolean;
+  isError: boolean;
+  formErrors: any;
+  setFormErrors: React.Dispatch<any>;
+}
 
 export const FormsContext = createContext<FormsContextType | undefined>(
   undefined
@@ -20,7 +29,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   children,
   formsConfig,
 }) => {
-  const { configCallback, endpoint } = formsConfig;
+  const { configCallback, endpoint, permissionHeaders } = formsConfig;
   const configEndpoint = endpoint + "/_config";
 
   const {
@@ -30,11 +39,74 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   } = useFetchConfig({
     configEndpoint,
     configCallback,
+    permissionHeaders,
   });
 
-  console.log(">>>>>>>>> ", config, isFetched, isError);
+  const {
+    model = "",
+    dbOp = "",
+    schema = {},
+    uischema = {},
+    initialData = {},
+  } = config || {};
 
-  return <FormsContext.Provider value={{}}>{children}</FormsContext.Provider>;
+  if (isFetched && (!model || !dbOp)) {
+    throw new Error(
+      "Missing required config: 'model' and 'dbOp' must be present."
+    );
+  }
+
+  const action_endpoint = endpoint + "/" + model + "/_" + dbOp;
+
+  const [formErrors, setFormErrors] = React.useState([]);
+
+  const makeActionRequest = async (
+    data: Record<string, Record<string, any> | string>
+  ) => {
+    try {
+      console.log("formErrors", formErrors);
+
+      const response = await fetch(action_endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...permissionHeaders,
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error("Error in makeActionRequest:", error);
+      throw error;
+    }
+  };
+
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  return (
+    <FormsContext.Provider
+      value={{
+        schema,
+        uischema,
+        initialData,
+        makeActionRequest,
+        isFetched,
+        isError,
+        formErrors,
+        setFormErrors,
+      }}
+    >
+      {!isFetched ? <>Loading....</> : children}
+    </FormsContext.Provider>
+  );
 };
 FormsProviderBase.displayName = "FormsProviderBase";
 
@@ -44,7 +116,6 @@ interface FormsProviderInterface extends FormsProviderBaseInterface {
 
 const FormsProvider: React.FC<FormsProviderInterface> = ({
   showDevTools = false,
-
   ...props
 }) => {
   return (
