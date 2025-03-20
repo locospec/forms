@@ -20,9 +20,15 @@ export const FormsContext = createContext<FormsContextType | undefined>(
   undefined
 );
 
+interface FormsConfigInterface {
+  configCallback?: () => Promise<any>;
+  endpoint?: string;
+  permissionHeaders?: Record<string, string>;
+}
+
 interface FormsProviderBaseInterface {
   children: React.ReactNode;
-  formsConfig: any;
+  formsConfig: FormsConfigInterface;
 }
 
 const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
@@ -55,60 +61,68 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
       "Missing required config: 'model' and 'dbOp' must be present."
     );
   }
-
-  const action_endpoint = endpoint + "/" + model + "/_" + dbOp;
+  const actionEndpoint = `${endpoint}/${model}/_${dbOp}`;
 
   const [formErrors, setFormErrors] = React.useState([]);
 
-  const makeActionRequest = async (
-    data: Record<string, Record<string, any> | string>
-  ) => {
-    try {
-      console.log("formErrors", formErrors);
-
+  const makeActionRequest = React.useCallback(
+    async (data: Record<string, any>) => {
       if (formErrors.length > 0) {
         console.log("Please resolve form errors");
         throw new Error(`Error: ${formErrors.length} Errors found`);
       }
 
-      const response = await fetch(action_endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...permissionHeaders,
-        },
-        body: JSON.stringify(data),
-      });
+      try {
+        const response = await fetch(actionEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            ...permissionHeaders,
+          },
+          body: JSON.stringify(data),
+        });
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+
+        return await response.json();
+      } catch (error) {
+        console.error("Error in makeActionRequest:", error);
+        throw error;
       }
+    },
+    [actionEndpoint, formErrors, permissionHeaders]
+  );
 
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.error("Error in makeActionRequest:", error);
-      throw error;
-    }
-  };
+  const contextValue = React.useMemo(
+    () => ({
+      schema,
+      uischema,
+      initialData,
+      makeActionRequest,
+      isFetched,
+      isError,
+      formErrors,
+      setFormErrors,
+    }),
+    [
+      schema,
+      uischema,
+      initialData,
+      makeActionRequest,
+      isFetched,
+      isError,
+      formErrors,
+    ]
+  );
 
   if (isError) {
     return <div>Error</div>;
   }
 
   return (
-    <FormsContext.Provider
-      value={{
-        schema,
-        uischema,
-        initialData,
-        makeActionRequest,
-        isFetched,
-        isError,
-        formErrors,
-        setFormErrors,
-      }}
-    >
+    <FormsContext.Provider value={contextValue}>
       {!isFetched ? <>Loading....</> : children}
     </FormsContext.Provider>
   );
