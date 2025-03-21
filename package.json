@@ -83,16 +83,18 @@
     }
   },
   "optionalDependencies": {
+    "@ast-grep/napi-linux-x64-gnu": "^0.36.1",
     "@rollup/rollup-darwin-arm64": "^4.30.1",
     "@rollup/rollup-darwin-x64": "^4.30.1",
     "@rollup/rollup-linux-x64-gnu": "^4.30.1",
     "@swc/core-darwin-arm64": "^1.10.7",
     "@swc/core-darwin-x64": "^1.10.7",
-    "@swc/core-linux-x64-gnu": "^1.10.7",
-    "@ast-grep/napi-linux-x64-gnu": "^0.36.1"
+    "@swc/core-linux-x64-gnu": "^1.10.7"
   },
   "dependencies": {
     "@date-io/dayjs": "^3.2.0",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-popover": "^1.1.6",
     "@types/lodash": "^4.17.16",
     "dayjs": "^1.11.13",
     "lodash": "^4.17.21"
