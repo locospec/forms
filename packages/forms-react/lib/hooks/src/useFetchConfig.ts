@@ -28,7 +28,6 @@ const useFetchConfig = ({
     }
 
     const config = await response.json();
-    console.log("config", config);
     return config;
   };
 
