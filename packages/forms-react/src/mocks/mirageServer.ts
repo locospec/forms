@@ -87,7 +87,58 @@ export function makeServer() {
         if (
           resource === "auction-data" ||
           resource === "auction-data-2" ||
-          resource === "auction-data-3"
+          resource === "auction-data-3" ||
+          resource === "sample"
+        ) {
+          let completeTestData: any = [];
+
+          completeTestData = Array.from({ length: 200 }, (_, index) => ({
+            // label: dataSource + "[" + processed + "]" + index,
+            // value: dataSource + "_" + index,
+            title: dataSource + "[" + processed + "]" + index,
+            const: dataSource + "_" + index,
+          }));
+
+          const paginatedTestData = completeTestData.slice(
+            cursor,
+            cursor + pageSize
+          );
+          const nextCursor =
+            cursor + pageSize < completeTestData.length
+              ? cursor + pageSize
+              : null;
+          const meta = {
+            count: 2,
+            per_page: pageSize,
+            has_more: null,
+            next_cursor: nextCursor,
+            prev_cursor: null,
+          };
+          return {
+            success: true,
+            data: paginatedTestData,
+            meta: meta,
+          };
+        }
+
+        return new Response(404, {}, { message: "Resource not found" });
+      });
+
+      this.post("/:resource/_read_relation_options", (_, request) => {
+        const resource = request.params.resource;
+
+        const body = JSON.parse(request.requestBody);
+        const { filters, relation, pagination } = body;
+        const { cursor } = pagination;
+        const dataSource = relation;
+        const pageSize = 20;
+        const processed = JSON.stringify(filters);
+
+        if (
+          resource === "auction-data" ||
+          resource === "auction-data-2" ||
+          resource === "auction-data-3" ||
+          resource === "sample"
         ) {
           let completeTestData: any = [];
 

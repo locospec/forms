@@ -16,7 +16,14 @@ const SCHEMA = {
     nationality: {
       type: "string",
       uniqueItems: true,
-      enum: ["DE", "IT", "JP", "US", "RU", "Other"],
+      options: [
+        { title: "India", const: "IN" },
+        { title: "Denmark", const: "DE" },
+        { title: "Italy", const: "IT" },
+        { title: "Japan", const: "JP" },
+        { title: "Russia", const: "RU" },
+        { title: "Other", const: "OTHER" },
+      ],
     },
     states: {
       type: "string",
@@ -94,7 +101,7 @@ const UI_SCHEMA = {
           scope: "#/properties/personalData/properties/height",
         },
         {
-          type: "Control",
+          type: "ENUM",
           scope: "#/properties/nationality",
         },
         {

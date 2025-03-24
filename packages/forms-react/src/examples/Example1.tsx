@@ -11,6 +11,7 @@ const SubmitButton = ({ data }: any) => {
     <button
       className="px-4 py-2 text-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-sm"
       onClick={async () => {
+        console.log(">>> DATA TO BE SUBMITTED", data);
         const res = await makeActionRequest(data);
         if (res.success) {
           alert("Success");

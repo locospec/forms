@@ -13,7 +13,11 @@ export interface FormsContextType {
   isFetched: boolean;
   isError: boolean;
   formErrors: any;
+  formData: any;
+  setFormData: any;
   setFormErrors: React.Dispatch<any>;
+  baseEndpoint: string;
+  permissionHeaders: any;
 }
 
 export const FormsContext = createContext<FormsContextType | undefined>(
@@ -64,6 +68,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   const actionEndpoint = `${endpoint}/${model}/_${dbOp}`;
 
   const [formErrors, setFormErrors] = React.useState([]);
+  const [formData, setFormData] = React.useState();
 
   const makeActionRequest = React.useCallback(
     async (data: Record<string, any>) => {
@@ -105,6 +110,10 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
       isError,
       formErrors,
       setFormErrors,
+      baseEndpoint: endpoint || "",
+      formData,
+      setFormData,
+      permissionHeaders,
     }),
     [
       schema,
@@ -114,6 +123,10 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
       isFetched,
       isError,
       formErrors,
+      endpoint,
+      formData,
+      setFormData,
+      permissionHeaders,
     ]
   );
 
