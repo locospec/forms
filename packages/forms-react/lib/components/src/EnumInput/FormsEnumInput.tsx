@@ -81,10 +81,10 @@ const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
           className={cn(
             "relative flex items-center justify-start px-2 w-full gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
             "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-            "h-14 px-4 py-2 border",
+            "h-14 px-4 py-2 border hover:bg-accent",
             errors
               ? "border-red-500 text-[#d32f2f] focus-visible:ring-red-500"
-              : "border-border bg-background shadow-sm hover:bg-accent hover:text-accent-foreground"
+              : "border-border bg-background shadow-sm hover:text-accent-foreground"
           )}
           aria-expanded={open}
         >
