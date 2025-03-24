@@ -5,7 +5,7 @@ import { FormsEnumInput } from "./FormsEnumInput";
 import { useDebouncedEffectAfterMount, useEffectAfterMount } from "@/hooks";
 import { capitaliseFirstLetter, generateFilter } from "./utils";
 
-interface FormsEnumInputWrapperInterface {
+export interface FormsEnumInputWrapperInterface {
   placeholder?: string;
   emptyLabel?: string;
   callback?: (values: string | string[]) => void;
@@ -19,13 +19,15 @@ interface FormsEnumInputWrapperInterface {
   className?: any;
   schema?: any;
   handleChange?: any;
+  errors?: any;
+  required?: boolean;
 }
 
 const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
   props
 ) => {
   const { baseEndpoint, formData, permissionHeaders } = useFormsContext();
-  const { schema, path, handleChange } = props;
+  const { schema, path, handleChange, errors = null, required } = props;
   const { modelName, dependsOn = [], options = [] } = schema;
   const [values, setValues] = React.useState<string>();
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -122,9 +124,11 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
         values={values}
         setValues={setValues}
         placeholder={placeholder}
+        errors={errors}
+        required={required}
       />
     </div>
   );
 };
 
-export default FormsEnumInputWrapper;
+export { FormsEnumInputWrapper };

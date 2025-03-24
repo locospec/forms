@@ -66,7 +66,7 @@ const SCHEMA = {
       maxLength: 5,
     },
   },
-  required: ["occupation", "nationality"],
+  required: ["occupation", "nationality", "states"],
 };
 
 const UI_SCHEMA = {
