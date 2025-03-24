@@ -10,10 +10,9 @@ interface JSONFormsInterface {
   onChangeCallback?: any;
 }
 
-const JSONForm: React.FC<JSONFormsInterface> = ({ onChangeCallback }) => {
-  const { schema, uischema, initialData, setFormData, setFormErrors } =
+const JSONForm: React.FC<JSONFormsInterface> = ({}) => {
+  const { schema, uischema, formData, setFormErrors, handleFormsValuesChange } =
     useFormsContext();
-  const [data, setData] = React.useState(initialData);
 
   const renderers = [
     ...materialRenderers,
@@ -24,14 +23,14 @@ const JSONForm: React.FC<JSONFormsInterface> = ({ onChangeCallback }) => {
     <JsonForms
       schema={schema}
       uischema={uischema}
-      data={data}
+      data={formData}
       renderers={renderers}
       cells={materialCells}
       onChange={({ data, errors }: any) => {
-        setData(data);
-        setFormData(data);
+        if (data) {
+          handleFormsValuesChange(data);
+        }
         setFormErrors(errors);
-        onChangeCallback && onChangeCallback(data);
       }}
     />
   );

@@ -18,6 +18,8 @@ export interface FormsContextType {
   setFormErrors: React.Dispatch<any>;
   baseEndpoint: string;
   permissionHeaders: any;
+  handleFormsValuesChange: any;
+  clearFormsData: any;
 }
 
 export const FormsContext = createContext<FormsContextType | undefined>(
@@ -33,11 +35,13 @@ interface FormsConfigInterface {
 interface FormsProviderBaseInterface {
   children: React.ReactNode;
   formsConfig: FormsConfigInterface;
+  onChangeCallback?: any;
 }
 
 const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   children,
   formsConfig,
+  onChangeCallback,
 }) => {
   const { configCallback, endpoint, permissionHeaders } = formsConfig;
   const configEndpoint = endpoint + "/_config";
@@ -57,7 +61,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     dbOp = "",
     schema = {},
     uischema = {},
-    initialData = {},
+    initialData,
   } = config || {};
 
   if (isFetched && (!model || !dbOp)) {
@@ -68,7 +72,8 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   const actionEndpoint = `${endpoint}/${model}/_${dbOp}`;
 
   const [formErrors, setFormErrors] = React.useState([]);
-  const [formData, setFormData] = React.useState();
+  const [formData, setFormData] =
+    React.useState<Record<string, any>>(initialData);
 
   const makeActionRequest = React.useCallback(
     async (data: Record<string, any>) => {
@@ -100,6 +105,21 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     [actionEndpoint, formErrors, permissionHeaders]
   );
 
+  const handleFormsValuesChange = (data: Record<string, any>) => {
+    setFormData(data);
+    onChangeCallback && onChangeCallback(data);
+  };
+
+  React.useEffect(() => {
+    if (isFetched && initialData) {
+      handleFormsValuesChange(initialData);
+    }
+  }, [isFetched, initialData]);
+
+  const clearFormsData = () => {
+    handleFormsValuesChange({});
+  };
+
   const contextValue = React.useMemo(
     () => ({
       schema,
@@ -114,6 +134,8 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
       formData,
       setFormData,
       permissionHeaders,
+      handleFormsValuesChange,
+      clearFormsData,
     }),
     [
       schema,
