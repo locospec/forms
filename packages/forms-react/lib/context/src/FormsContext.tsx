@@ -142,7 +142,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     }),
     [
       schema,
-      uischema,
+      uiSchema,
       initialData,
       makeActionRequest,
       isFetched,

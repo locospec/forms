@@ -35,7 +35,7 @@ export function makeServer() {
                 },
               },
               schema: SCHEMA,
-              uischema: UI_SCHEMA,
+              uiSchema: UI_SCHEMA,
               initialData: person.data,
             },
           };
