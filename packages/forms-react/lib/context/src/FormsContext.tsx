@@ -56,13 +56,16 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     permissionHeaders,
   });
 
+  const configData = config?.data || {};
+  // const configMeta = config?.meta || {};
+
   const {
     model = "",
     dbOp = "",
     schema = {},
     uischema = {},
     initialData,
-  } = config || {};
+  } = configData || {};
 
   if (isFetched && (!model || !dbOp)) {
     throw new Error(

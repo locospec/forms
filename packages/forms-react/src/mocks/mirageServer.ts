@@ -12,30 +12,32 @@ export function makeServer() {
         const resource = request.params.resource;
         if (resource === "sample") {
           return {
-            name: "create_asset_type",
-            type: "action",
-            dbOp: "insert",
-            model: "asset_type",
-            label: "Create Asset Type",
-            attributes: {
-              name: {
-                type: "string",
-                label: "Name",
-                validations: [
-                  {
-                    type: "required",
-                    message: "Name is required",
-                  },
-                  {
-                    type: "regex:/^[a-zA-Z0-9 ]+$/",
-                    message: "Name should match the regex",
-                  },
-                ],
+            data: {
+              name: "create_asset_type",
+              type: "action",
+              dbOp: "insert",
+              model: "asset_type",
+              label: "Create Asset Type",
+              attributes: {
+                name: {
+                  type: "string",
+                  label: "Name",
+                  validations: [
+                    {
+                      type: "required",
+                      message: "Name is required",
+                    },
+                    {
+                      type: "regex:/^[a-zA-Z0-9 ]+$/",
+                      message: "Name should match the regex",
+                    },
+                  ],
+                },
               },
+              schema: SCHEMA,
+              uischema: UI_SCHEMA,
+              initialData: person.data,
             },
-            schema: SCHEMA,
-            uischema: UI_SCHEMA,
-            initialData: person.data,
           };
         }
 
