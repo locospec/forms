@@ -72,7 +72,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
       "Missing required config: 'model' and 'dbOp' must be present."
     );
   }
-  const actionEndpoint = `${endpoint}/${model}/_${dbOp}`;
+  const actionEndpoint = `${endpoint}/_${dbOp}`;
 
   const [formErrors, setFormErrors] = React.useState([]);
   const [formData, setFormData] =
