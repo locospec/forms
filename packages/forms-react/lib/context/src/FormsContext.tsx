@@ -63,7 +63,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     model = "",
     dbOp = "",
     schema = {},
-    uischema = {},
+    uiSchema = {},
     initialData,
   } = configData || {};
 
@@ -126,7 +126,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   const contextValue = React.useMemo(
     () => ({
       schema,
-      uischema,
+      uischema: uiSchema,
       initialData,
       makeActionRequest,
       isFetched,
