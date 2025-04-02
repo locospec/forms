@@ -10,8 +10,8 @@ const generateFilter = (
     if (key in formData) {
       dependencyFilters.push({
         attribute: key,
-        op: "in",
-        value: formData[key],
+        op: "is_any_of",
+        value: [formData[key]],
       });
     }
   });
