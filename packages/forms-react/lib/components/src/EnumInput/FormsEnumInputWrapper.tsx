@@ -30,7 +30,12 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
   const { baseEndpoint, formData, permissionHeaders, context } =
     useFormsContext();
   const { schema, path, handleChange, errors = null, required, data } = props;
-  const { modelName, dependsOn = [], options = [] } = schema;
+  const {
+    modelName,
+    dependsOn = [],
+    options = [],
+    allowedScopes = [],
+  } = schema;
   const [values, setValues] = React.useState<string>(data ?? "");
   const [searchQuery, setSearchQuery] = React.useState("");
   const [open, setOpen] = React.useState(false);
@@ -67,6 +72,10 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
       ...(context &&
         (Object.keys(context).length > 0 || searchQuery !== "") && {
           globalContext: { ...context, search: searchQuery },
+        }),
+      ...(allowedScopes &&
+        allowedScopes.length > 0 && {
+          scope: allowedScopes,
         }),
     },
     refreshDep: [query_key, searchQuery],
