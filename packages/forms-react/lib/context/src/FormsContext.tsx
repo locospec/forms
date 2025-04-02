@@ -20,6 +20,7 @@ export interface FormsContextType {
   permissionHeaders: any;
   handleFormsValuesChange: any;
   clearFormsData: any;
+  context: Record<string, any>;
 }
 
 export const FormsContext = createContext<FormsContextType | undefined>(
@@ -30,6 +31,7 @@ interface FormsConfigInterface {
   configCallback?: () => Promise<any>;
   endpoint?: string;
   permissionHeaders?: Record<string, string>;
+  context: Record<string, any>;
 }
 
 interface FormsProviderBaseInterface {
@@ -43,7 +45,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   formsConfig,
   onChangeCallback,
 }) => {
-  const { configCallback, endpoint, permissionHeaders } = formsConfig;
+  const { configCallback, endpoint, permissionHeaders, context } = formsConfig;
   const configEndpoint = endpoint + "/_config";
 
   const {
@@ -139,6 +141,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
       permissionHeaders,
       handleFormsValuesChange,
       clearFormsData,
+      context,
     }),
     [
       schema,
@@ -152,6 +155,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
       formData,
       setFormData,
       permissionHeaders,
+      context,
     ]
   );
 

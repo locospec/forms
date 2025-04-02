@@ -51,12 +51,13 @@ const ProviderExample = () => {
       "Content-Type": "application/json",
       sample: "This is a sample header",
     },
+    context: { value1: "SampleContext" },
   };
 
   return (
     <div className="flex flex-col gap-x-4 px-3 py-2">
       <FormsProvider formsConfig={formsConfig} onChangeCallback={setData}>
-        <FormRenderer onChangeCallback={setData} wrapperClasses="py-3" />
+        <FormRenderer wrapperClasses="py-3" />
         <div className="flex justify-end gap-x-4">
           <ClearAll />
           <SubmitButton data={data} />

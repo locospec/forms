@@ -27,7 +27,8 @@ export interface FormsEnumInputWrapperInterface {
 const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
   props
 ) => {
-  const { baseEndpoint, formData, permissionHeaders } = useFormsContext();
+  const { baseEndpoint, formData, permissionHeaders, context } =
+    useFormsContext();
   const { schema, path, handleChange, errors = null, required, data } = props;
   const { modelName, dependsOn = [], options = [] } = schema;
   const [values, setValues] = React.useState<string>(data ?? "");
@@ -63,6 +64,10 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
     body: {
       relation: modelName,
       filters: generateFilter(formData, dependsOn),
+      ...(context &&
+        (Object.keys(context).length > 0 || searchQuery !== "") && {
+          globalContext: { ...context, search: searchQuery },
+        }),
     },
     refreshDep: [query_key, searchQuery],
     headers: permissionHeaders,
