@@ -77,7 +77,7 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
             }),
           ...(allowedScopes &&
             allowedScopes.length > 0 && {
-              scope: allowedScopes,
+              scopes: allowedScopes,
             }),
         },
         refreshDep: [query_key, searchQuery],
