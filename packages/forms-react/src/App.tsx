@@ -35,7 +35,7 @@ function App() {
             <h1 className="text-xl font-bold">Header Section - Title</h1>
           </header>
 
-          <div className="flex-grow overflow-auto pt-4">
+          <div className="grow overflow-auto pt-4">
             <Routes>
               <Route path="*" children={<></>} />
               <Route path="/example" children={<Example1 />} />
