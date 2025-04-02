@@ -1,4 +1,6 @@
-@import "tailwindcss/base";
+@import "tailwindcss";
+
+/* @import "tailwindcss/base"; */
 /* @import "@radix-ui/themes/styles.css"; */
 /* @import "@radix-ui/themes/tokens.css"; */
 /* @import "@radix-ui/themes/tokens/base.css"; */
@@ -6,9 +8,8 @@
 /* @import "@radix-ui/themes/layout/tokens.css"; */
 /* @import "@radix-ui/themes/layout/components.css"; */
 /* @import "@radix-ui/themes/layout/utilities.css"; */
-
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+/* @import "tailwindcss/components"; */
+/* @import "tailwindcss/utilities"; */
 
 @layer base {
   :root {
@@ -88,15 +89,6 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
     @apply bg-background text-foreground;
   }
 }
@@ -108,14 +100,5 @@
 
   to {
     background-color: var(--gray-a4);
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
