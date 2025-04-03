@@ -31,6 +31,7 @@ interface FormsConfigInterface {
   configCallback?: () => Promise<any>;
   endpoint?: string;
   permissionHeaders?: Record<string, string>;
+  primaryKey?: string;
   context?: Record<string, any>;
 }
 
@@ -50,6 +51,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     endpoint,
     permissionHeaders,
     context = {},
+    primaryKey,
   } = formsConfig;
   const configEndpoint = endpoint + "/_config";
 
@@ -61,6 +63,7 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     configEndpoint,
     configCallback,
     permissionHeaders,
+    ...(primaryKey && { body: { primaryKey } }),
   });
 
   const configData = config?.data || {};

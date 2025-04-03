@@ -51,6 +51,7 @@ const ProviderExample = () => {
       "Content-Type": "application/json",
       sample: "This is a sample header",
     },
+    primaryKey: "id",
     // context: { value1: "SampleContext" },
   };
 
