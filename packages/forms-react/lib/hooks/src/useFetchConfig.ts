@@ -23,7 +23,7 @@ const useFetchConfig = ({
         "Content-Type": "application/json",
         ...permissionHeaders,
       },
-      body: body,
+      body: JSON.stringify(body),
     });
 
     if (!response.ok) {
