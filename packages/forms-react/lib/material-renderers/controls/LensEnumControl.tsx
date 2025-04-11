@@ -56,7 +56,7 @@ export const LensEnumControl = (
 };
 
 export const lensEnumControlTester: RankedTester = rankWith(2, (props) => {
-  if (props?.type === "ENUM") return true;
+  if (props?.type === "lens-enum") return true;
 });
 
 // HOC order can be reversed with https://github.com/eclipsesource/jsonforms/issues/1987
