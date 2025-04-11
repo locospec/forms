@@ -76,7 +76,7 @@ const UI_SCHEMA = {
       type: "HorizontalLayout",
       elements: [
         {
-          type: "Control",
+          type: "CustomTextInputField",
           scope: "#/properties/name",
         },
         {
