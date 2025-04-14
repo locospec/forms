@@ -86,6 +86,10 @@ const UI_SCHEMA = {
           type: "lens-calendar",
           scope: "#/properties/birthDate",
         },
+        {
+          type: "lens-switch",
+          scope: "#/properties/vegetarian",
+        },
       ],
     },
     {

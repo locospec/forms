@@ -1,8 +1,8 @@
 import React from "react";
 import { capitaliseFirstLetter } from "./utils";
-import { FormsCalendarInput } from "./FormsCalendarInput";
+import { FormsSwitchInput } from "./FormsSwitchInput";
 
-export interface FormsCalendarInputWrapperInterface {
+export interface FormsSwitchInputWrapperInterface {
   placeholder?: string;
   emptyLabel?: string;
   callback?: (values: string | string[]) => void;
@@ -20,9 +20,9 @@ export interface FormsCalendarInputWrapperInterface {
   required?: boolean;
 }
 
-const FormsCalendarInputWrapper: React.FC<
-  FormsCalendarInputWrapperInterface
-> = (props) => {
+const FormsSwitchInputWrapper: React.FC<FormsSwitchInputWrapperInterface> = (
+  props
+) => {
   const { schema, path, handleChange, errors = null, required } = props;
   const { title = "" } = schema;
   const [values, setValues] = React.useState<string>();
@@ -37,8 +37,8 @@ const FormsCalendarInputWrapper: React.FC<
   };
 
   return (
-    <div className="ENUM-WRAPPER" ref={filterContainerRef}>
-      <FormsCalendarInput
+    <div className=" h-full" ref={filterContainerRef}>
+      <FormsSwitchInput
         title={title}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
@@ -53,4 +53,4 @@ const FormsCalendarInputWrapper: React.FC<
   );
 };
 
-export { FormsCalendarInputWrapper };
+export { FormsSwitchInputWrapper };

@@ -6,14 +6,7 @@ import { Button } from "@/base/button";
 import { CalendarIcon } from "lucide-react";
 
 export interface FormsCalendarInputInteface {
-  filterContainerRef: any;
-  model_name: string;
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   onChangeCallback?: any;
-  fetchNextPage?: any;
-  isFetching?: any;
-  hasNextPage?: any;
   values?: any;
   setValues?: any;
   placeholder?: string;
@@ -21,6 +14,7 @@ export interface FormsCalendarInputInteface {
   setIsLoading?: any;
   errors?: any;
   required?: boolean;
+  title?: string;
 }
 
 const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
@@ -30,6 +24,7 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
   placeholder = "Select option",
   errors,
   required = false,
+  title,
 }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [open, setOpen] = useState(false);
@@ -47,14 +42,10 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
     setDate(item);
     setValues(item);
     setOpen(false);
-    // setRenderKey(renderKey + 1);
   };
 
   return (
-    <div
-      // key={renderKey}
-      className="w-full"
-    >
+    <div className="w-full">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -66,7 +57,6 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
             <div className="flex justify-between w-full items-center">
               <div className="relative w-full">
                 <Input
-                  // key={renderKey}
                   id="calendar-component"
                   value={showDateFormat(values)}
                   onChange={() => {}}
@@ -80,7 +70,13 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
                   }   left-0    pointer-events-none  transition-all duration-300 peer-valid:h-fit  peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-[10px] peer-focus:top-1.5 peer-focus:text-[10px]  peer-focus:leading-[13px] peer-focus:h-fit  peer-focus:text-brand-orange peer-valid:top-1 peer-valid:text-[10px] peer-valid:leading-[13px] peer-valid:text-brand-borderGrey`}
                 >
                   <p className="py-auto  flex flex-col justify-center h-full ">
-                    {required ? placeholder + "*" : placeholder}
+                    {required
+                      ? title
+                        ? title + "*"
+                        : placeholder + "*"
+                      : title
+                      ? title
+                      : placeholder}
                   </p>
                 </label>
               </div>
