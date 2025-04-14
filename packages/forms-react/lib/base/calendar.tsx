@@ -18,13 +18,6 @@ function Calendar({
 }: CalendarProps) {
   const today = startOfDay(new Date());
 
-  const getDayClassName = (date: Date) =>
-    cn(
-      buttonVariants({ variant: "ghost" }),
-      "h-9 w-9 p-0 font-normal rounded-full aria-selected:opacity-100",
-      isBefore(date, today) ? "text-brand-textLightGrey" : ""
-    );
-
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -66,8 +59,8 @@ function Calendar({
         past: (date) => isBefore(date, today),
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        IconLeft: () => <ChevronLeft className="h-4 w-4" />,
+        IconRight: () => <ChevronRight className="h-4 w-4" />,
       }}
       {...props}
     />

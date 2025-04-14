@@ -27,7 +27,6 @@ export interface FormsCalendarInputInteface {
 }
 
 const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
-  options,
   onChangeCallback,
   values,
   setValues,
@@ -52,10 +51,7 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
     setValues(d);
   };
   return (
-    <div
-      //  ref={positionRef}
-      className="w-full"
-    >
+    <div className="w-full">
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -80,7 +76,7 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
                   }   left-0    pointer-events-none  transition-all duration-300 peer-valid:h-fit  peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-[10px] peer-focus:top-1.5 peer-focus:text-[10px]  peer-focus:leading-[13px] peer-focus:h-fit  peer-focus:text-brand-orange peer-valid:top-1 peer-valid:text-[10px] peer-valid:leading-[13px] peer-valid:text-brand-borderGrey`}
                 >
                   <p className="py-auto  flex flex-col justify-center h-full ">
-                    {placeholder}
+                    {required ? placeholder + "*" : placeholder}
                   </p>
                 </label>
               </div>

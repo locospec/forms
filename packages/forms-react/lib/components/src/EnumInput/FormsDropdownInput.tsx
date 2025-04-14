@@ -69,7 +69,7 @@ const FormsDropdownInput: React.FC<FormsDropdownInputInteface> = ({
           values ? "text-brand-borderGrey" : "text-transparent"
         }`}
       >
-        {placeholder}
+        {required ? placeholder + "*" : placeholder}
       </div>
       {errors && (
         <label
