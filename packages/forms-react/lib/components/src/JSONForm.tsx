@@ -11,6 +11,9 @@ import LensTextControl, {
 import LensDropdownControl, {
   lensDropdownControlTester,
 } from "@/material-renderers/controls/LensDropdownControl";
+import LensCalendarControl, {
+  lensCalendarControlTester,
+} from "@/material-renderers/controls/LensCalendarControl";
 
 interface JSONFormsInterface {
   onChangeCallback?: any;
@@ -26,6 +29,7 @@ const JSONForm: React.FC<JSONFormsInterface> = ({ onChangeCallback }) => {
     { tester: lensEnumControlTester, renderer: LensEnumControl },
     { tester: lensTextControlTester, renderer: LensTextControl },
     { tester: lensDropdownControlTester, renderer: LensDropdownControl },
+    { tester: lensCalendarControlTester, renderer: LensCalendarControl },
   ];
 
   return (

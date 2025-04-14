@@ -101,7 +101,7 @@ const UI_SCHEMA = {
           scope: "#/properties/personalData/properties/height",
         },
         {
-          type: "lens-enum",
+          type: "lens-calendar",
           scope: "#/properties/nationality",
         },
         {
@@ -130,15 +130,15 @@ const UI_SCHEMA = {
       type: "HorizontalLayout",
       elements: [
         {
-          type: "lens-enum",
+          // type: "lens-enum",
           scope: "#/properties/states",
         },
         {
-          type: "lens-enum",
+          // type: "lens-enum",
           scope: "#/properties/districts",
         },
         {
-          type: "lens-enum",
+          // type: "lens-enum",
           scope: "#/properties/cities",
         },
       ],

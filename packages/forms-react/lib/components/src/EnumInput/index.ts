@@ -12,3 +12,8 @@ export { FormsDropdownInput } from "./FormsDropdownInput";
 export type { FormsDropdownInputInteface } from "./FormsDropdownInput";
 export { FormsDropdownInputWrapper } from "./FormsDropdownInputWrapper";
 export type { FormsDropdownInputWrapperInterface } from "./FormsDropdownInputWrapper";
+
+export { FormsCalendarInput } from "./FormsCalendarInput";
+export type { FormsCalendarInputInteface } from "./FormsCalendarInput";
+export { FormsCalendarInputWrapper } from "./FormsCalendarInputWrapper";
+export type { FormsCalendarInputWrapperInterface } from "./FormsCalendarInputWrapper";
