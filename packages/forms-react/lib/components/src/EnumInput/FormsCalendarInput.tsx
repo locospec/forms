@@ -6,7 +6,6 @@ import { Button } from "@/base/button";
 import { CalendarIcon } from "lucide-react";
 
 export interface FormsCalendarInputInteface {
-  options: { title: string; const: string }[];
   filterContainerRef: any;
   model_name: string;
   searchQuery: string;
@@ -18,8 +17,6 @@ export interface FormsCalendarInputInteface {
   values?: any;
   setValues?: any;
   placeholder?: string;
-  open?: any;
-  setOpen?: any;
   isLoading?: any;
   setIsLoading?: any;
   errors?: any;
@@ -35,24 +32,30 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
   required = false,
 }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
-  //   const handleValueChange = (value: string) => {
-  //     setValues(value);
-  //     onChangeCallback && onChangeCallback(value);
-  //   };
-  const handleDateSelect = (item: any) => {
-    let d = new Intl.DateTimeFormat("en-GB", {
+  const [open, setOpen] = useState(false);
+
+  const showDateFormat = (item: any) => {
+    return new Intl.DateTimeFormat("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
     }).format(item);
-
-    onChangeCallback && onChangeCallback(d);
-    setDate(item);
-    setValues(d);
   };
+
+  const handleDateSelect = (item: any) => {
+    onChangeCallback && onChangeCallback(item);
+    setDate(item);
+    setValues(item);
+    setOpen(false);
+    // setRenderKey(renderKey + 1);
+  };
+
   return (
-    <div className="w-full">
-      <Popover>
+    <div
+      // key={renderKey}
+      className="w-full"
+    >
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant={"outline"}
@@ -63,8 +66,9 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
             <div className="flex justify-between w-full items-center">
               <div className="relative w-full">
                 <Input
-                  id="name"
-                  value={values}
+                  // key={renderKey}
+                  id="calendar-component"
+                  value={showDateFormat(values)}
                   onChange={() => {}}
                   required
                   className="bg-transparent border-none hover:cursor-pointer pointer-events-none py-4  peer  autofill:bg-white focus:border-brand-orange pb-[6px] h-[50px]  outline-none  border  w-full   font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey"

@@ -3,14 +3,12 @@ const SCHEMA = {
   properties: {
     name: {
       type: "string",
-      minLength: 3,
       description: "Please enter your name",
     },
     vegetarian: {
       type: "boolean",
     },
     birthDate: {
-      type: "string",
       format: "date",
     },
     nationality: {
@@ -43,7 +41,8 @@ const SCHEMA = {
       type: "object",
       properties: {
         age: {
-          type: "integer",
+          type: "number",
+          title: "Age",
           description: "Please enter your age.",
         },
         height: {
@@ -76,15 +75,15 @@ const UI_SCHEMA = {
       type: "HorizontalLayout",
       elements: [
         {
-          type: "CustomTextInputField",
+          type: "lens-text-input",
           scope: "#/properties/name",
         },
         {
-          type: "Control",
+          type: "lens-text-input",
           scope: "#/properties/personalData/properties/age",
         },
         {
-          type: "Control",
+          type: "lens-calendar",
           scope: "#/properties/birthDate",
         },
       ],

@@ -3,6 +3,7 @@ import { Input } from "@/base/input";
 
 export interface FormsTextInputInteface {
   options: { title: string; const: string }[];
+  contentType: string;
   filterContainerRef: any;
   model_name: string;
   searchQuery: string;
@@ -19,7 +20,10 @@ export interface FormsTextInputInteface {
   isLoading?: any;
   setIsLoading?: any;
   errors?: any;
+  minValue?: number;
+  stepSize?: number;
   required?: boolean;
+  title?: string;
 }
 
 const FormsTextInput: React.FC<FormsTextInputInteface> = ({
@@ -28,6 +32,10 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
   setValues,
   placeholder = "Select option",
   errors,
+  contentType,
+  minValue,
+  stepSize,
+  title,
   required = false,
 }) => {
   const handleValueChange = (value: string) => {
@@ -38,6 +46,8 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
   return (
     <div className={` relative w-full`}>
       <Input
+        type={contentType}
+        {...(contentType === "number" ? { stepSize, minValue } : {})}
         id="name"
         value={values}
         onChange={(e) => {
@@ -51,7 +61,13 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
           !values ? "text-brand-borderGrey" : "text-transparent"
         } left-4 top-4 pointer-events-none transition-all duration-300 peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-[10px] peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:leading-[13px] peer-focus:text-brand-orange peer-valid:top-1.5 peer-valid:text-[10px] peer-valid:leading-[13px] peer-valid:text-brand-borderGrey`}
       >
-        {required ? placeholder + "*" : placeholder}
+        {required
+          ? title
+            ? title + "*"
+            : placeholder + "*"
+          : title
+          ? title
+          : placeholder}
       </label>
       {errors && (
         <label

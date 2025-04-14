@@ -56,7 +56,7 @@ export const LensTextControl = (
 };
 
 export const lensTextControlTester: RankedTester = rankWith(2, (props) => {
-  if (props?.type === "CustomTextInputField") return true;
+  if (props?.type === "lens-text-input") return true;
 });
 
 // HOC order can be reversed with https://github.com/eclipsesource/jsonforms/issues/1987

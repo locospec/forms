@@ -28,7 +28,15 @@ const FormsTextInputWrapper: React.FC<FormsTextInputWrapperInterface> = (
 ) => {
   const { baseEndpoint, formData, permissionHeaders } = useFormsContext();
   const { schema, path, handleChange, errors = null, required } = props;
-  const { modelName, dependsOn = [], options = [] } = schema;
+  const {
+    modelName,
+    dependsOn = [],
+    options = [],
+    type = "string",
+    minValue = 0,
+    stepSize = 1,
+    title = "",
+  } = schema;
   const [values, setValues] = React.useState<string>();
   const [searchQuery, setSearchQuery] = React.useState("");
   const [open, setOpen] = React.useState(false);
@@ -108,6 +116,10 @@ const FormsTextInputWrapper: React.FC<FormsTextInputWrapperInterface> = (
   return (
     <div className="ENUM-WRAPPER" ref={filterContainerRef}>
       <FormsTextInput
+        title={title}
+        minValue={minValue}
+        stepSize={stepSize}
+        contentType={type}
         open={open}
         setOpen={setOpen}
         isLoading={isLoading}

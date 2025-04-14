@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormsContext } from "@/context";
 import { useInfiniteFetch } from "@/hooks/src/useInfiniteFetch";
-import { useDebouncedEffectAfterMount, useEffectAfterMount } from "@/hooks";
+import { useDebouncedEffectAfterMount } from "@/hooks";
 import { capitaliseFirstLetter, generateFilter } from "./utils";
 import { FormsCalendarInput } from "./FormsCalendarInput";
 
@@ -28,10 +28,9 @@ const FormsCalendarInputWrapper: React.FC<
 > = (props) => {
   const { baseEndpoint, formData, permissionHeaders } = useFormsContext();
   const { schema, path, handleChange, errors = null, required } = props;
-  const { modelName, dependsOn = [], options = [] } = schema;
+  const { modelName, dependsOn = [] } = schema;
   const [values, setValues] = React.useState<string>();
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const placeholder = capitaliseFirstLetter(path as unknown as string);
@@ -44,17 +43,8 @@ const FormsCalendarInputWrapper: React.FC<
   const handleValueChange = (value: string) => {
     handleChange(path, value);
   };
-  const previousSameGroupRef = React.useRef(
-    JSON.stringify(generateFilter(formData, dependsOn))
-  );
 
-  const {
-    flatData: apiOptions,
-    fetchNextPage,
-    isFetching,
-    hasNextPage,
-    refetch,
-  } = useInfiniteFetch({
+  const { fetchNextPage, isFetching, hasNextPage, refetch } = useInfiniteFetch({
     queryKey: query_key,
     searchQuery: searchQuery,
     endpoint: relationQueryEndpoint,
@@ -67,16 +57,6 @@ const FormsCalendarInputWrapper: React.FC<
     headers: permissionHeaders,
   });
 
-  const enum_options: any[] = [];
-  let areOptionsStatic = false;
-  if (options.length > 0) {
-    areOptionsStatic = true;
-    enum_options.push(...options);
-  } else {
-    areOptionsStatic = false;
-    enum_options.push(...apiOptions);
-  }
-
   useDebouncedEffectAfterMount(
     () => {
       setValues("");
@@ -86,33 +66,11 @@ const FormsCalendarInputWrapper: React.FC<
     500
   );
 
-  useEffectAfterMount(() => {
-    if (open && !areOptionsStatic) {
-      const currentSameGroup = JSON.stringify(
-        generateFilter(formData, dependsOn)
-      );
-
-      if (previousSameGroupRef.current !== currentSameGroup) {
-        setIsLoading(true);
-        refetch()
-          .then(() => {
-            previousSameGroupRef.current = currentSameGroup;
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }
-    }
-  }, [open, areOptionsStatic]);
-
   return (
     <div className="ENUM-WRAPPER" ref={filterContainerRef}>
       <FormsCalendarInput
-        open={open}
-        setOpen={setOpen}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
-        options={enum_options}
         filterContainerRef={filterContainerRef}
         model_name={modelName}
         searchQuery={searchQuery}
