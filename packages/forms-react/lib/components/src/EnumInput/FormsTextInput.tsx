@@ -11,6 +11,7 @@ import {
 } from "@/base/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/base/popover";
 import { useFetchMoreOnScroll } from "@/hooks";
+import { Input } from "@/base/input";
 
 export interface FormsTextInputInteface {
   options: { title: string; const: string }[];
@@ -75,102 +76,102 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
   };
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <div
-          className={cn(
-            "relative flex items-center justify-start px-2 w-full gap-2 whitespace-nowrap rounded-md text-[10px] font-normal text-[#666666] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-            "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#EEEEEE]",
-            "h-14 px-4 py-2 border hover:bg-accent",
-            errors
-              ? "border-red-500 text-[#d32f2f] focus-visible:ring-red-500"
-              : "border-border bg-background shadow-sm hover:text-accent-foreground"
-          )}
-          aria-expanded={open}
-        >
-          <div className="max-w-[150px] truncate">
-            {values && values.length > 0
-              ? options
-                  .filter((option) => values.includes(option?.const))
-                  .map((option) => option.title)
-                  .join(",")
-              : `${placeholder} ${required ? "*" : ""}`}
-          </div>
-          {values && values.length > 0 ? (
-            <div
-              className="h-4 w-4 absolute right-2 hover:bg-aaccent"
-              onClick={handleInputClear}
-            >
-              <X className="shrink-0 opacity-50" />
-            </div>
-          ) : (
-            <div className="h-4 w-4 absolute right-2">
-              <ChevronDown className="shrink-0 opacity-50 hover:bg-accent" />
-            </div>
-          )}
-        </div>
-      </PopoverTrigger>
-      {errors && (
-        <label className="text-[#d32f2f] text-xs ml-[14px]">{errors}</label>
-      )}
-      <PopoverContent
-        className="w-[280px] max-w-[300px] p-0"
-        containerRef={filterContainerRef}
-      >
-        <Command>
-          <div
-            className="flex items-center border-b px-3"
-            cmdk-input-wrapper=""
-          >
-            <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-            <input
-              className={cn(
-                "flex h-8 border-0 w-full bg-transparent py-1 text-sm outline-none placeholder:text-muted-foreground hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50"
-              )}
-              value={searchQuery}
-              placeholder={placeholder}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-              }}
-            />
-          </div>
-          <CommandSeparator />
-          <CommandList
-            ref={containerRef}
-            key={model_name}
-            onScroll={(e) =>
-              fetchMoreOnBottomReached(e.target as HTMLDivElement)
-            }
-          >
-            <CommandEmpty>
-              {isLoading ? "Loading options" : "NO options found"}
-            </CommandEmpty>
-            <CommandGroup>
-              {!isLoading &&
-                options.map((option) => {
-                  return (
-                    <CommandItem
-                      key={option?.const}
-                      value={option?.const}
-                      onSelect={handleValueChange}
-                    >
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          values && values.includes(option?.const)
-                            ? "opacity-100"
-                            : "opacity-0"
-                        )}
-                      />
-                      {option?.title}
-                    </CommandItem>
-                  );
-                })}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
+    // <Popover open={open} onOpenChange={setOpen}>
+    //   <PopoverTrigger asChild>
+    //     <div
+    //       className={cn(
+    //         "relative flex items-center justify-start px-2 w-full gap-2 whitespace-nowrap rounded-md text-[10px] font-normal text-[#666666] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+    //         "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#EEEEEE]",
+    //         "h-14 px-4 py-2 border hover:bg-accent",
+    //         errors
+    //           ? "border-red-500 text-[#d32f2f] focus-visible:ring-red-500"
+    //           : "border-border bg-background shadow-sm hover:text-accent-foreground"
+    //       )}
+    //       aria-expanded={open}
+    //     >
+    //       <div className="max-w-[150px] truncate">
+    //         {values && values.length > 0
+    //           ? options
+    //               .filter((option) => values.includes(option?.const))
+    //               .map((option) => option.title)
+    //               .join(",")
+    //           : `${placeholder} ${required ? "*" : ""}`}
+    //       </div>
+    //       {values && values.length > 0 ? (
+    //         <div
+    //           className="h-4 w-4 absolute right-2 hover:bg-aaccent"
+    //           onClick={handleInputClear}
+    //         >
+    //           <X className="shrink-0 opacity-50" />
+    //         </div>
+    //       ) : (
+    //         <div className="h-4 w-4 absolute right-2">
+    //           <ChevronDown className="shrink-0 opacity-50 hover:bg-accent" />
+    //         </div>
+    //       )}
+    //     </div>
+    //   </PopoverTrigger>
+    //   {errors && (
+    //     <label className="text-[#d32f2f] text-xs ml-[14px]">{errors}</label>
+    //   )}
+    //   <PopoverContent
+    //     className="w-[280px] max-w-[300px] p-0"
+    //     containerRef={filterContainerRef}
+    //   >
+    //     <Command>
+    //       <div
+    //         className="flex items-center border-b px-3"
+    //         cmdk-input-wrapper=""
+    //       >
+    //         <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+    //         <input
+    //           className={cn(
+    //             "flex h-8 border-0 w-full bg-transparent py-1 text-sm outline-none placeholder:text-muted-foreground hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50"
+    //           )}
+    //           value={searchQuery}
+    //           placeholder={placeholder}
+    //           onChange={(e) => {
+    //             setSearchQuery(e.target.value);
+    //           }}
+    //         />
+    //       </div>
+    //       <CommandSeparator />
+    //       <CommandList
+    //         ref={containerRef}
+    //         key={model_name}
+    //         onScroll={(e) =>
+    //           fetchMoreOnBottomReached(e.target as HTMLDivElement)
+    //         }
+    //       >
+    //         <CommandEmpty>
+    //           {isLoading ? "Loading options" : "NO options found"}
+    //         </CommandEmpty>
+    //         <CommandGroup>
+    //           {!isLoading &&
+    //             options.map((option) => {
+    //               return (
+    //                 <CommandItem
+    //                   key={option?.const}
+    //                   value={option?.const}
+    //                   onSelect={handleValueChange}
+    //                 >
+    //                   <Check
+    //                     className={cn(
+    //                       "mr-2 h-4 w-4",
+    //                       values && values.includes(option?.const)
+    //                         ? "opacity-100"
+    //                         : "opacity-0"
+    //                     )}
+    //                   />
+    //                   {option?.title}
+    //                 </CommandItem>
+    //               );
+    //             })}
+    //         </CommandGroup>
+    //       </CommandList>
+    //     </Command>
+    //   </PopoverContent>
+    // </Popover>
 
     //     <div>
     //       {/* <p>hello</p> */}
@@ -194,6 +195,36 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
     //         <label className="text-[#d32f2f] text-xs ml-[14px]">{errors}</label>
     //       )}
     //     </div>
+    <div
+      // ref={positionRef}
+      // className={` relative w-full ${outerContainerClassName}`}
+      className={` relative w-full`}
+    >
+      <Input
+        id="name"
+        value={values}
+        onChange={(e) => {
+          handleValueChange(e.target.value);
+        }}
+        className={`bg-white  py-4 peer pl-4 autofill:bg-white focus:border-brand-orange pb-[6px] h-[50px]  outline-none  border  w-full   font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey`}
+      />
+      <label
+        htmlFor="name"
+        className={`absolute font-openSans font-normal text-web-body-sm leading-3 mid:text-web-body-lg mid:leading-5 ${
+          !values ? "text-brand-borderGrey" : "text-transparent"
+        } left-4 top-4 pointer-events-none transition-all duration-300 peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-[10px] peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:leading-[13px] peer-focus:text-brand-orange peer-valid:top-1.5 peer-valid:text-[10px] peer-valid:leading-[13px] peer-valid:text-brand-borderGrey`}
+      >
+        {placeholder}
+      </label>
+      {errors && (
+        <label
+          htmlFor="name"
+          className={"text-brand-textRed text-web-body-sm ml-2"}
+        >
+          {errors}
+        </label>
+      )}
+    </div>
   );
 };
 
