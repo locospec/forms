@@ -20,8 +20,8 @@ export interface FormsTextInputInteface {
   isLoading?: any;
   setIsLoading?: any;
   errors?: any;
-  minValue?: number;
-  stepSize?: number;
+  minvalue?: number;
+  stepsize?: number;
   required?: boolean;
   title?: string;
 }
@@ -33,8 +33,8 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
   placeholder = "Select option",
   errors,
   contentType,
-  minValue,
-  stepSize,
+  minvalue,
+  stepsize,
   title,
   required = false,
 }) => {
@@ -47,7 +47,7 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
     <div className={` relative w-full`}>
       <Input
         type={contentType}
-        {...(contentType === "number" ? { stepSize, minValue } : {})}
+        {...(contentType === "number" ? { stepsize, minvalue } : {})}
         id="name"
         value={values}
         onChange={(e) => {

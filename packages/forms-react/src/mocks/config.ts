@@ -106,7 +106,7 @@ const UI_SCHEMA = {
           scope: "#/properties/personalData/properties/height",
         },
         {
-          type: "lens-calendar",
+          type: "lens-dropdown",
           scope: "#/properties/nationality",
         },
         {

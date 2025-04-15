@@ -33,8 +33,8 @@ const FormsTextInputWrapper: React.FC<FormsTextInputWrapperInterface> = (
     dependsOn = [],
     options = [],
     type = "string",
-    minValue = 0,
-    stepSize = 1,
+    minvalue = 0,
+    stepsize = 1,
     title = "",
   } = schema;
   const [values, setValues] = React.useState<string>();
@@ -117,8 +117,8 @@ const FormsTextInputWrapper: React.FC<FormsTextInputWrapperInterface> = (
     <div className="ENUM-WRAPPER" ref={filterContainerRef}>
       <FormsTextInput
         title={title}
-        minValue={minValue}
-        stepSize={stepSize}
+        minvalue={minvalue}
+        stepsize={stepsize}
         contentType={type}
         open={open}
         setOpen={setOpen}
