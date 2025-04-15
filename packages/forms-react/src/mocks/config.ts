@@ -10,6 +10,7 @@ const SCHEMA = {
     },
     birthDate: {
       format: "date",
+      type: "string",
     },
     nationality: {
       type: "string",

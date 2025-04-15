@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar } from "@/base/calendar";
 import { Popover, PopoverTrigger, PopoverContent } from "@/base/popover";
 import { Input } from "@/base/input";
@@ -29,20 +29,34 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [open, setOpen] = useState(false);
 
-  const showDateFormat = (item: any) => {
+  const showDateFormat = (item: string | Date | undefined) => {
+    if (!item) return "";
+
+    const dateObj = typeof item === "string" ? new Date(item) : item;
+
     return new Intl.DateTimeFormat("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
-    }).format(item);
+    }).format(dateObj);
   };
 
-  const handleDateSelect = (item: any) => {
-    onChangeCallback && onChangeCallback(item);
+  const handleDateSelect = (item: Date | undefined) => {
+    if (!item) return;
+
+    const isoDate = item.toISOString().split("T")[0]; // 'YYYY-MM-DD'
+    onChangeCallback?.(isoDate);
     setDate(item);
-    setValues(item);
+    setValues?.(isoDate);
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (values) {
+      const dateObj = typeof values === "string" ? new Date(values) : values;
+      setDate(dateObj);
+    }
+  }, [values]);
 
   return (
     <div className="w-full">
