@@ -21,18 +21,26 @@ export interface FormsEnumInputWrapperInterface {
   handleChange?: any;
   errors?: any;
   required?: boolean;
+  data: any;
 }
 
 const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
   props
 ) => {
-  const { baseEndpoint, formData, permissionHeaders } = useFormsContext();
-  const { schema, path, handleChange, errors = null, required } = props;
-  const { modelName, dependsOn = [], options = [] } = schema;
-  const [values, setValues] = React.useState<string>();
+  const { baseEndpoint, formData, permissionHeaders, context } =
+    useFormsContext();
+  const { schema, path, handleChange, errors = null, required, data } = props;
+  const {
+    modelName,
+    dependsOn = [],
+    options = [],
+    allowedScopes = [],
+  } = schema;
+  const [values, setValues] = React.useState<string>(data ?? "");
   const [searchQuery, setSearchQuery] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const shouldFetch = modelName && options.length === 0;
 
   const placeholder = capitaliseFirstLetter(path as unknown as string);
 
@@ -54,18 +62,34 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
     isFetching,
     hasNextPage,
     refetch,
-  } = useInfiniteFetch({
-    queryKey: query_key,
-    searchQuery: searchQuery,
-    endpoint: relationQueryEndpoint,
-    keepPreviousData: true,
-    body: {
-      relation: modelName,
-      filters: generateFilter(formData, dependsOn),
-    },
-    refreshDep: [query_key, searchQuery],
-    headers: permissionHeaders,
-  });
+  } = shouldFetch
+    ? useInfiniteFetch({
+        queryKey: query_key,
+        searchQuery: searchQuery,
+        endpoint: relationQueryEndpoint,
+        keepPreviousData: true,
+        body: {
+          relation: modelName,
+          filters: generateFilter(formData, dependsOn),
+          ...(context &&
+            (Object.keys(context).length > 0 || searchQuery !== "") && {
+              globalContext: { ...context, search: searchQuery },
+            }),
+          ...(allowedScopes &&
+            allowedScopes.length > 0 && {
+              scopes: allowedScopes,
+            }),
+        },
+        refreshDep: [query_key, searchQuery],
+        headers: permissionHeaders,
+      })
+    : {
+        flatData: [],
+        fetchNextPage: () => {},
+        isFetching: false,
+        hasNextPage: false,
+        refetch: async () => {},
+      };
 
   const enum_options: any[] = [];
   let areOptionsStatic = false;
@@ -80,7 +104,7 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
   useDebouncedEffectAfterMount(
     () => {
       setValues("");
-      refetch();
+      refetch && refetch();
     },
     [JSON.stringify(generateFilter(formData, dependsOn))],
     500
@@ -104,6 +128,10 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
       }
     }
   }, [open, areOptionsStatic]);
+
+  React.useEffect(() => {
+    setValues(data);
+  }, [data]);
 
   return (
     <div className="ENUM-WRAPPER" ref={filterContainerRef}>

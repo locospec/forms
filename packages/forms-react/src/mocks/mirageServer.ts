@@ -35,25 +35,23 @@ export function makeServer() {
                 },
               },
               schema: SCHEMA,
-              uischema: UI_SCHEMA,
+              uiSchema: UI_SCHEMA,
               initialData: person.data,
             },
-            meta: [],
           };
         }
 
         return new Response(404, {}, { message: "Resource not found" });
       });
 
-      this.post("/:resource/:model/_insert", (_, request) => {
+      this.post("/:resource/_insert", (_, request) => {
         const resource = request.params.resource;
-        const model = request.params.model;
         const body = JSON.parse(request.requestBody);
 
         if (resource === "sample") {
           return {
             success: true,
-            msg: `New Record Created in ${model}`,
+            msg: `New Record Created in ${resource}`,
             data: body,
           };
         }
@@ -61,15 +59,14 @@ export function makeServer() {
         return new Response(404, {}, { message: "Resource not found" });
       });
 
-      this.post("/:resource/:model/_update", (_, request) => {
+      this.post("/:resource/_update", (_, request) => {
         const resource = request.params.resource;
-        const model = request.params.model;
         const body = JSON.parse(request.requestBody);
 
         if (resource === "sample") {
           return {
             success: true,
-            msg: `Record Updated in ${model}`,
+            msg: `Record Updated in ${resource}`,
             data: body,
           };
         }

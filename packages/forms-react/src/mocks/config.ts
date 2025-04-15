@@ -26,11 +26,13 @@ const SCHEMA = {
     states: {
       type: "string",
       modelName: "states",
+      allowedScopes: ["sample"],
     },
     districts: {
       type: "string",
       dependsOn: ["states"],
       modelName: "districts",
+      allowedScopes: ["sample", "sample2"],
     },
     cities: {
       type: "string",
