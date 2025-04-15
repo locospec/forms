@@ -32,7 +32,7 @@ function App() {
         </div>
         <div className="w-[90vw] lg:w-[80vw] flex flex-col h-full">
           <header className="bg-gray-50 flex items-center justify-center">
-            <h1 className="text-xl font-bold">Header Section - Title</h1>
+            <h1 className="text-xl font-bold">Header Section - Forms Sample</h1>
           </header>
 
           <div className="flex-grow overflow-auto pt-4">
