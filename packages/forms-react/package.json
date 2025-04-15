@@ -8,7 +8,7 @@
     "email": "shrey@betalectic.com",
     "url": "https://github.com/ShreyDhyani"
   },
-  "version": "0.0.0",
+  "version": "0.0.2",
   "type": "module",
   "exports": {
     ".": {
