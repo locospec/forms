@@ -73,6 +73,9 @@ const SCHEMA = {
 
 const UI_SCHEMA = {
   type: "VerticalLayout",
+  options: {
+    rowSpacing: 5,
+  },
   elements: [
     {
       type: "HorizontalLayout",

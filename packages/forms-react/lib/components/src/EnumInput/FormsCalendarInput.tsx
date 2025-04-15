@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Calendar } from "@/base/calendar";
 import { Popover, PopoverTrigger, PopoverContent } from "@/base/popover";
 import { Input } from "@/base/input";
@@ -26,13 +26,14 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
   required = false,
   title,
 }) => {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(new Date(values));
   const [open, setOpen] = useState(false);
 
-  const showDateFormat = (item: string | Date | undefined) => {
-    if (!item) return "";
+  const showDateFormat = (dateValue: string | Date | undefined) => {
+    if (!dateValue) return "";
 
-    const dateObj = typeof item === "string" ? new Date(item) : item;
+    const dateObj =
+      typeof dateValue === "string" ? new Date(dateValue) : dateValue;
 
     return new Intl.DateTimeFormat("en-GB", {
       day: "2-digit",
@@ -41,22 +42,19 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
     }).format(dateObj);
   };
 
-  const handleDateSelect = (item: Date | undefined) => {
-    if (!item) return;
+  const handleDateSelect = (selectedDate: Date | undefined) => {
+    if (!selectedDate) return;
 
-    const isoDate = item.toISOString().split("T")[0]; // 'YYYY-MM-DD'
-    onChangeCallback?.(isoDate);
-    setDate(item);
-    setValues?.(isoDate);
+    const year = selectedDate.getFullYear();
+    const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
+    const day = String(selectedDate.getDate()).padStart(2, "0");
+    const formattedDate = `${year}-${month}-${day}`; // 'YYYY-MM-DD'
+
+    onChangeCallback?.(formattedDate);
+    setDate(selectedDate);
+    setValues?.(formattedDate);
     setOpen(false);
   };
-
-  useEffect(() => {
-    if (values) {
-      const dateObj = typeof values === "string" ? new Date(values) : values;
-      setDate(dateObj);
-    }
-  }, [values]);
 
   return (
     <div className="w-full">

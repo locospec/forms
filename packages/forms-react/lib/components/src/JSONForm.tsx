@@ -2,6 +2,7 @@ import React from "react";
 import { JsonForms } from "@jsonforms/react";
 import { materialRenderers, materialCells } from "@/material-renderers";
 import { useFormsContext } from "@/context";
+import { createTheme, ThemeProvider } from "@mui/material";
 import LensEnumControl, {
   lensEnumControlTester,
 } from "@/material-renderers/controls/LensEnumControl";
@@ -34,21 +35,32 @@ const JSONForm: React.FC<JSONFormsInterface> = ({}) => {
     { tester: lensCalendarControlTester, renderer: LensCalendarControl },
     { tester: lensSwitchControlTester, renderer: LensSwitchControl },
   ];
+  const theme = createTheme({
+    components: {
+      MuiGrid: {
+        defaultProps: {
+          rowSpacing: uischema?.options?.rowSpacing | 0,
+        },
+      },
+    },
+  });
 
   return (
-    <JsonForms
-      schema={schema}
-      uischema={uischema}
-      data={formData}
-      renderers={renderers}
-      cells={materialCells}
-      onChange={({ data, errors }: any) => {
-        if (data) {
-          handleFormsValuesChange(data);
-        }
-        setFormErrors(errors);
-      }}
-    />
+    <ThemeProvider theme={theme}>
+      <JsonForms
+        schema={schema}
+        uischema={uischema}
+        data={formData}
+        renderers={renderers}
+        cells={materialCells}
+        onChange={({ data, errors }: any) => {
+          if (data) {
+            handleFormsValuesChange(data);
+          }
+          setFormErrors(errors);
+        }}
+      />
+    </ThemeProvider>
   );
 };
 

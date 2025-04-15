@@ -1,5 +1,5 @@
 import React from "react";
-import { capitaliseFirstLetter } from "./utils";
+import { generateTitleName } from "./utils";
 import { FormsCalendarInput } from "./FormsCalendarInput";
 
 export interface FormsCalendarInputWrapperInterface {
@@ -28,7 +28,7 @@ const FormsCalendarInputWrapper: React.FC<
   const [values, setValues] = React.useState<string>();
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const placeholder = capitaliseFirstLetter(path as unknown as string);
+  const placeholder = generateTitleName(path as unknown as string);
 
   const filterContainerRef = React.useRef<HTMLDivElement>(null);
 

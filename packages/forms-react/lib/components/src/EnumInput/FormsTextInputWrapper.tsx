@@ -2,7 +2,7 @@ import React from "react";
 import { useFormsContext } from "@/context";
 import { useInfiniteFetch } from "@/hooks/src/useInfiniteFetch";
 import { useDebouncedEffectAfterMount, useEffectAfterMount } from "@/hooks";
-import { capitaliseFirstLetter, generateFilter } from "./utils";
+import { generateTitleName, generateFilter } from "./utils";
 import { FormsTextInput } from "./FormsTextInput";
 
 export interface FormsTextInputWrapperInterface {
@@ -42,7 +42,7 @@ const FormsTextInputWrapper: React.FC<FormsTextInputWrapperInterface> = (
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const placeholder = capitaliseFirstLetter(path as unknown as string);
+  const placeholder = generateTitleName(path as unknown as string);
 
   const query_key = `${modelName}&options`;
 
