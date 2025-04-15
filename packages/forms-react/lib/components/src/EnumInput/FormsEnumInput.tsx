@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, ChevronsUpDown, Search, X } from "lucide-react";
+import { Check, ChevronDown, Search, X } from "lucide-react";
 import { cn } from "@/utils";
 import {
   Command,
@@ -79,8 +79,8 @@ const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
       <PopoverTrigger asChild>
         <div
           className={cn(
-            "relative flex items-center justify-start px-2 w-full gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-            "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+            "relative flex items-center justify-start px-2 w-full gap-2 whitespace-nowrap rounded-md text-[10px] font-normal text-[#666666] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+            "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#EEEEEE]",
             "h-14 px-4 py-2 border hover:bg-accent",
             errors
               ? "border-red-500 text-[#d32f2f] focus-visible:ring-red-500"
@@ -105,7 +105,7 @@ const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
             </div>
           ) : (
             <div className="h-4 w-4 absolute right-2">
-              <ChevronsUpDown className="shrink-0 opacity-50 hover:bg-accent" />
+              <ChevronDown className="shrink-0 opacity-50 hover:bg-accent" />
             </div>
           )}
         </div>

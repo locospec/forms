@@ -3,15 +3,14 @@ const SCHEMA = {
   properties: {
     name: {
       type: "string",
-      minLength: 3,
       description: "Please enter your name",
     },
     vegetarian: {
       type: "boolean",
     },
     birthDate: {
-      type: "string",
       format: "date",
+      type: "string",
     },
     nationality: {
       type: "string",
@@ -28,11 +27,13 @@ const SCHEMA = {
     states: {
       type: "string",
       modelName: "states",
+      allowedScopes: ["sample"],
     },
     districts: {
       type: "string",
       dependsOn: ["states"],
       modelName: "districts",
+      allowedScopes: ["sample", "sample2"],
     },
     cities: {
       type: "string",
@@ -43,7 +44,8 @@ const SCHEMA = {
       type: "object",
       properties: {
         age: {
-          type: "integer",
+          type: "number",
+          title: "Age",
           description: "Please enter your age.",
         },
         height: {
@@ -71,21 +73,28 @@ const SCHEMA = {
 
 const UI_SCHEMA = {
   type: "VerticalLayout",
+  options: {
+    rowSpacing: 5,
+  },
   elements: [
     {
       type: "HorizontalLayout",
       elements: [
         {
-          type: "Control",
+          type: "lens-text-input",
           scope: "#/properties/name",
         },
         {
-          type: "Control",
+          type: "lens-text-input",
           scope: "#/properties/personalData/properties/age",
         },
         {
-          type: "Control",
+          type: "lens-calendar",
           scope: "#/properties/birthDate",
+        },
+        {
+          type: "lens-switch",
+          scope: "#/properties/vegetarian",
         },
       ],
     },
@@ -101,7 +110,7 @@ const UI_SCHEMA = {
           scope: "#/properties/personalData/properties/height",
         },
         {
-          type: "ENUM",
+          type: "lens-dropdown",
           scope: "#/properties/nationality",
         },
         {
@@ -124,21 +133,21 @@ const UI_SCHEMA = {
     },
     {
       type: "Label",
-      text: "ENUM TESTING",
+      text: "lens-enum TESTING",
     },
     {
       type: "HorizontalLayout",
       elements: [
         {
-          type: "ENUM",
+          // type: "lens-enum",
           scope: "#/properties/states",
         },
         {
-          type: "ENUM",
+          // type: "lens-enum",
           scope: "#/properties/districts",
         },
         {
-          type: "ENUM",
+          // type: "lens-enum",
           scope: "#/properties/cities",
         },
       ],

@@ -43,24 +43,24 @@ import {
   MuiAutocomplete,
   WithOptionLabel,
 } from "../mui-controls/MuiAutocomplete";
-import { FormsEnumInputWrapper } from "@/components/src/EnumInput";
+import { FormsCalendarInputWrapper } from "@/components/src/EnumInput/FormsCalendarInputWrapper";
 
-export const LensEnumControl = (
+export const LensCalendarControl = (
   props: ControlProps & OwnPropsOfEnum & WithOptionLabel & TranslateProps
 ) => {
   const { config, uischema, errors } = props;
   const appliedUiSchemaOptions = merge({}, config, uischema.options);
   const isValid = errors.length === 0;
 
-  return <FormsEnumInputWrapper {...props} />;
+  return <FormsCalendarInputWrapper {...props} />;
 };
 
-export const lensEnumControlTester: RankedTester = rankWith(2, (props) => {
-  if (props?.type === "lens-enum") return true;
+export const lensCalendarControlTester: RankedTester = rankWith(2, (props) => {
+  if (props?.type === "lens-calendar") return true;
 });
 
 // HOC order can be reversed with https://github.com/eclipsesource/jsonforms/issues/1987
 export default withJsonFormsEnumProps(
-  withTranslateProps(React.memo(LensEnumControl)),
+  withTranslateProps(React.memo(LensCalendarControl)),
   false
 );

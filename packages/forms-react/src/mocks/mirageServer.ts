@@ -12,45 +12,46 @@ export function makeServer() {
         const resource = request.params.resource;
         if (resource === "sample") {
           return {
-            name: "create_asset_type",
-            type: "action",
-            dbOp: "insert",
-            model: "asset_type",
-            label: "Create Asset Type",
-            attributes: {
-              name: {
-                type: "string",
-                label: "Name",
-                validations: [
-                  {
-                    type: "required",
-                    message: "Name is required",
-                  },
-                  {
-                    type: "regex:/^[a-zA-Z0-9 ]+$/",
-                    message: "Name should match the regex",
-                  },
-                ],
+            data: {
+              name: "create_asset_type",
+              type: "action",
+              dbOp: "insert",
+              model: "asset_type",
+              label: "Create Asset Type",
+              attributes: {
+                name: {
+                  type: "string",
+                  label: "Name",
+                  validations: [
+                    {
+                      type: "required",
+                      message: "Name is required",
+                    },
+                    {
+                      type: "regex:/^[a-zA-Z0-9 ]+$/",
+                      message: "Name should match the regex",
+                    },
+                  ],
+                },
               },
+              schema: SCHEMA,
+              uiSchema: UI_SCHEMA,
+              initialData: person.data,
             },
-            schema: SCHEMA,
-            uischema: UI_SCHEMA,
-            initialData: person.data,
           };
         }
 
         return new Response(404, {}, { message: "Resource not found" });
       });
 
-      this.post("/:resource/:model/_insert", (_, request) => {
+      this.post("/:resource/_insert", (_, request) => {
         const resource = request.params.resource;
-        const model = request.params.model;
         const body = JSON.parse(request.requestBody);
 
         if (resource === "sample") {
           return {
             success: true,
-            msg: `New Record Created in ${model}`,
+            msg: `New Record Created in ${resource}`,
             data: body,
           };
         }
@@ -58,15 +59,14 @@ export function makeServer() {
         return new Response(404, {}, { message: "Resource not found" });
       });
 
-      this.post("/:resource/:model/_update", (_, request) => {
+      this.post("/:resource/_update", (_, request) => {
         const resource = request.params.resource;
-        const model = request.params.model;
         const body = JSON.parse(request.requestBody);
 
         if (resource === "sample") {
           return {
             success: true,
-            msg: `Record Updated in ${model}`,
+            msg: `Record Updated in ${resource}`,
             data: body,
           };
         }
