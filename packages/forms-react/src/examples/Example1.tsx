@@ -43,7 +43,7 @@ const ClearAll = () => {
   );
 };
 
-const ProviderExample = () => {
+const Example1 = () => {
   const [data, setData] = React.useState<Record<string, any>>();
   const formsConfig = {
     endpoint: "/api/data-bench/sample",
@@ -68,4 +68,4 @@ const ProviderExample = () => {
   );
 };
 
-export default ProviderExample;
+export default Example1;
