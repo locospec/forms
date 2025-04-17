@@ -18,14 +18,23 @@ import LensCalendarControl, {
 import LensSwitchControl, {
   lensSwitchControlTester,
 } from "@/material-renderers/controls/LensSwitchControl";
+import LensCalendarDateTimeControl, {
+  lensCalendarDateTimeControlTester,
+} from "@/material-renderers/controls/LensCalendarDateTimeControl";
 
 interface JSONFormsInterface {
   onChangeCallback?: any;
 }
 
 const JSONForm: React.FC<JSONFormsInterface> = ({}) => {
-  const { schema, uischema, formData, setFormErrors, handleFormsValuesChange } =
-    useFormsContext();
+  const {
+    schema,
+    uischema,
+    formData,
+    formErrors,
+    setFormErrors,
+    handleFormsValuesChange,
+  } = useFormsContext();
 
   const renderers = [
     ...materialRenderers,
@@ -34,6 +43,10 @@ const JSONForm: React.FC<JSONFormsInterface> = ({}) => {
     { tester: lensDropdownControlTester, renderer: LensDropdownControl },
     { tester: lensCalendarControlTester, renderer: LensCalendarControl },
     { tester: lensSwitchControlTester, renderer: LensSwitchControl },
+    {
+      tester: lensCalendarDateTimeControlTester,
+      renderer: LensCalendarDateTimeControl,
+    },
   ];
   const theme = createTheme({
     components: {
@@ -53,12 +66,14 @@ const JSONForm: React.FC<JSONFormsInterface> = ({}) => {
         data={formData}
         renderers={renderers}
         cells={materialCells}
+        validationMode="NoValidation"
         onChange={({ data, errors }: any) => {
           if (data) {
             handleFormsValuesChange(data);
           }
           setFormErrors(errors);
         }}
+        additionalErrors={formErrors}
       />
     </ThemeProvider>
   );
