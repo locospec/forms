@@ -139,15 +139,15 @@ const UI_SCHEMA = {
       type: "HorizontalLayout",
       elements: [
         {
-          // type: "lens-enum",
+          type: "lens-enum",
           scope: "#/properties/states",
         },
         {
-          // type: "lens-enum",
+          type: "lens-enum",
           scope: "#/properties/districts",
         },
         {
-          // type: "lens-enum",
+          type: "lens-enum",
           scope: "#/properties/cities",
         },
       ],
