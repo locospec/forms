@@ -20,7 +20,7 @@ const generateFilter = (
   }
   return {
     op: "and",
-    condition: dependencyFilters,
+    conditions: dependencyFilters,
   };
 };
 generateFilter.displayName = "generateFilter";
