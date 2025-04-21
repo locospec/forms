@@ -37,7 +37,7 @@ const FormsSwitchInputWrapper: React.FC<FormsSwitchInputWrapperInterface> = (
   };
 
   return (
-    <div className=" h-full" ref={filterContainerRef}>
+    <div className="h-full" ref={filterContainerRef}>
       <FormsSwitchInput
         title={title}
         isLoading={isLoading}

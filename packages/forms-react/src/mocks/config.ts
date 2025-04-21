@@ -60,6 +60,10 @@ const SCHEMA = {
       },
       required: ["age", "height"],
     },
+    auctionStartTime: {
+      type: "string",
+      format: "date-time",
+    },
     occupation: {
       type: "string",
     },
@@ -92,63 +96,23 @@ const UI_SCHEMA = {
           type: "lens-calendar",
           scope: "#/properties/birthDate",
         },
-        {
-          type: "lens-switch",
-          scope: "#/properties/vegetarian",
-        },
       ],
-    },
-    {
-      type: "Label",
-      text: "Additional Information",
     },
     {
       type: "HorizontalLayout",
       elements: [
-        {
-          type: "Control",
-          scope: "#/properties/personalData/properties/height",
-        },
         {
           type: "lens-dropdown",
           scope: "#/properties/nationality",
         },
+
         {
-          type: "Control",
-          scope: "#/properties/occupation",
-          options: {
-            suggestion: [
-              "Accountant",
-              "Engineer",
-              "Freelancer",
-              "Journalism",
-              "Physician",
-              "Student",
-              "Teacher",
-              "Other",
-            ],
-          },
-        },
-      ],
-    },
-    {
-      type: "Label",
-      text: "lens-enum TESTING",
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          // type: "lens-enum",
-          scope: "#/properties/states",
+          type: "lens-calendar-date-time",
+          scope: "#/properties/auctionStartTime",
         },
         {
-          // type: "lens-enum",
-          scope: "#/properties/districts",
-        },
-        {
-          // type: "lens-enum",
-          scope: "#/properties/cities",
+          type: "lens-switch",
+          scope: "#/properties/vegetarian",
         },
       ],
     },
