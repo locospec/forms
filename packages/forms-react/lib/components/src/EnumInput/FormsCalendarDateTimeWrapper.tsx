@@ -1,8 +1,8 @@
 import React from "react";
 import { generateTitleName } from "./utils";
-import { FormsSwitchInput } from "./FormsSwitchInput";
+import { FormsCalendarDateTime } from "./FormsCalendarDateTime";
 
-export interface FormsSwitchInputWrapperInterface {
+export interface FormsCalendarDateTimeWrapperInterface {
   placeholder?: string;
   emptyLabel?: string;
   callback?: (values: string | string[]) => void;
@@ -20,9 +20,9 @@ export interface FormsSwitchInputWrapperInterface {
   required?: boolean;
 }
 
-const FormsSwitchInputWrapper: React.FC<FormsSwitchInputWrapperInterface> = (
-  props
-) => {
+const FormsCalendarDateTimeWrapper: React.FC<
+  FormsCalendarDateTimeWrapperInterface
+> = (props) => {
   const { schema, path, handleChange, errors = null, required } = props;
   const { title = "" } = schema;
   const [values, setValues] = React.useState<string>();
@@ -37,8 +37,8 @@ const FormsSwitchInputWrapper: React.FC<FormsSwitchInputWrapperInterface> = (
   };
 
   return (
-    <div className="h-full" ref={filterContainerRef}>
-      <FormsSwitchInput
+    <div className="ENUM-WRAPPER" ref={filterContainerRef}>
+      <FormsCalendarDateTime
         title={title}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
@@ -53,4 +53,4 @@ const FormsSwitchInputWrapper: React.FC<FormsSwitchInputWrapperInterface> = (
   );
 };
 
-export { FormsSwitchInputWrapper };
+export { FormsCalendarDateTimeWrapper };

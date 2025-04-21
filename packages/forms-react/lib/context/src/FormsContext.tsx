@@ -90,10 +90,10 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
 
   const makeActionRequest = React.useCallback(
     async (data: Record<string, any>) => {
-      if (formErrors.length > 0) {
-        console.log("Please resolve form errors");
-        throw new Error(`Error: ${formErrors.length} Errors found`);
-      }
+      // if (formErrors.length > 0) {
+      //   console.log("Please resolve form errors");
+      //   throw new Error(`Error: ${formErrors.length} Errors found`);
+      // }
 
       try {
         const response = await fetch(actionEndpoint, {
@@ -104,12 +104,13 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
           },
           body: JSON.stringify(data),
         });
+        const responseData = await response.json();
 
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
+        // if (!response.ok) {
+        // throw new Error(`Error: ${response.statusText}`);
+        // }
 
-        return await response.json();
+        return await responseData;
       } catch (error) {
         console.error("Error in makeActionRequest:", error);
         throw error;

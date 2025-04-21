@@ -2,23 +2,11 @@ import React from "react";
 import { Input } from "@/base/input";
 
 export interface FormsTextInputInteface {
-  options: { title: string; const: string }[];
   contentType: string;
-  filterContainerRef: any;
-  model_name: string;
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   onChangeCallback?: any;
-  fetchNextPage?: any;
-  isFetching?: any;
-  hasNextPage?: any;
   values?: any;
   setValues?: any;
   placeholder?: string;
-  open?: any;
-  setOpen?: any;
-  isLoading?: any;
-  setIsLoading?: any;
   errors?: any;
   minvalue?: number;
   stepsize?: number;
@@ -30,7 +18,7 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
   onChangeCallback,
   values,
   setValues,
-  placeholder = "Select option",
+  placeholder = "Enter value..",
   errors,
   contentType,
   minvalue,

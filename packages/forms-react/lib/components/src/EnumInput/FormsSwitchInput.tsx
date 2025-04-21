@@ -35,7 +35,7 @@ const FormsSwitchInput: React.FC<FormsSwitchInputInteface> = ({
         onCheckedChange={(checked) => {
           handleSwitchChange(checked);
         }}
-        className="data-[state=checked]:bg-brand-orange data-[state=unchecked]:bg-transparent hidden lg:flex  data-[state=unchecked]:border-2 data-[state=unchecked]:border-brand-textGrey p-1 h-8 w-[52px] data-[state=unchecked]:text-brand-textGrey"
+        className=" data-[state=unchecked]:bg-transparent hidden lg:flex  data-[state=unchecked]:border-2 data-[state=unchecked]:border-brand-textGrey p-1 h-8 w-[52px] data-[state=unchecked]:text-brand-textGrey"
       />
       <p className="font-openSans font-normal text-web-body-sm leading-[14px] text-brand-textGrey">
         {required
