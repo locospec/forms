@@ -18,12 +18,13 @@ export interface FormsCalendarDateTimeWrapperInterface {
   handleChange?: any;
   errors?: any;
   required?: boolean;
+  data?: any;
 }
 
 const FormsCalendarDateTimeWrapper: React.FC<
   FormsCalendarDateTimeWrapperInterface
 > = (props) => {
-  const { schema, path, handleChange, errors = null, required } = props;
+  const { schema, path, handleChange, errors = null, required, data } = props;
   const { title = "" } = schema;
   const [values, setValues] = React.useState<string>();
   const [isLoading, setIsLoading] = React.useState(false);
@@ -35,6 +36,10 @@ const FormsCalendarDateTimeWrapper: React.FC<
   const handleValueChange = (value: string) => {
     handleChange(path, value);
   };
+
+  React.useEffect(() => {
+    setValues(data);
+  }, [data]);
 
   return (
     <div className="ENUM-WRAPPER" ref={filterContainerRef}>

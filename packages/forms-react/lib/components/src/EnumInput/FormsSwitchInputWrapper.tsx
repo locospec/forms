@@ -18,12 +18,13 @@ export interface FormsSwitchInputWrapperInterface {
   handleChange?: any;
   errors?: any;
   required?: boolean;
+  data?: any;
 }
 
 const FormsSwitchInputWrapper: React.FC<FormsSwitchInputWrapperInterface> = (
   props
 ) => {
-  const { schema, path, handleChange, errors = null, required } = props;
+  const { schema, path, handleChange, errors = null, required, data } = props;
   const { title = "" } = schema;
   const [values, setValues] = React.useState<string>();
   const [isLoading, setIsLoading] = React.useState(false);
@@ -36,6 +37,10 @@ const FormsSwitchInputWrapper: React.FC<FormsSwitchInputWrapperInterface> = (
     handleChange(path, value);
   };
 
+  React.useEffect(() => {
+    setValues(data);
+  }, [data]);
+
   return (
     <div className="h-full" ref={filterContainerRef}>
       <FormsSwitchInput
@@ -43,7 +48,7 @@ const FormsSwitchInputWrapper: React.FC<FormsSwitchInputWrapperInterface> = (
         isLoading={isLoading}
         setIsLoading={setIsLoading}
         onChangeCallback={handleValueChange}
-        values={values}
+        values={values ?? false}
         setValues={setValues}
         placeholder={placeholder}
         errors={errors}
