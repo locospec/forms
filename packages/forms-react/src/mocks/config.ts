@@ -46,6 +46,7 @@ const SCHEMA = {
         age: {
           type: "number",
           title: "Age",
+          minvalue: 0,
           description: "Please enter your age.",
         },
         height: {

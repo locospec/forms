@@ -18,14 +18,21 @@ export interface FormsTextInputWrapperInterface {
   handleChange?: any;
   errors?: any;
   required?: boolean;
+  data?: string | number;
 }
 
 const FormsTextInputWrapper: React.FC<FormsTextInputWrapperInterface> = (
   props
 ) => {
-  const { schema, path, handleChange, errors = null, required } = props;
+  const { schema, path, handleChange, errors = null, required, data } = props;
   const { type = "string", minvalue = 0, stepsize = 1, title = "" } = schema;
-  const [values, setValues] = React.useState<string>();
+  const [values, setValues] = React.useState<any>(
+    data === undefined ? "" : data
+  );
+
+  React.useEffect(() => {
+    setValues(data);
+  }, [data]);
 
   const placeholder = generateTitleName(path as unknown as string);
 
@@ -43,7 +50,7 @@ const FormsTextInputWrapper: React.FC<FormsTextInputWrapperInterface> = (
         stepsize={stepsize}
         contentType={type}
         onChangeCallback={handleValueChange}
-        values={values}
+        values={values ?? ""}
         setValues={setValues}
         placeholder={placeholder}
         errors={errors}

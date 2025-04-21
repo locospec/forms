@@ -4,7 +4,7 @@ import { Input } from "@/base/input";
 export interface FormsTextInputInteface {
   contentType: string;
   onChangeCallback?: any;
-  values?: any;
+  values?: string | number;
   setValues?: any;
   placeholder?: string;
   errors?: any;
@@ -35,11 +35,17 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
     <div className={` relative w-full`}>
       <Input
         type={contentType}
-        {...(contentType === "number" ? { stepsize, minvalue } : {})}
+        {...(contentType === "number" ? { stepsize, min: minvalue } : {})}
         id="name"
         value={values}
         onChange={(e) => {
           handleValueChange(e.target.value);
+        }}
+        onWheel={(e: any) => e.target.blur()}
+        onKeyDown={(e) => {
+          if (contentType === "number" && (e.key === "-" || e.key === "e")) {
+            e.preventDefault();
+          }
         }}
         className={`bg-white  py-4 peer pl-4 autofill:bg-white focus:border-brand-orange pb-[6px] h-[50px]  outline-none  border  w-full   font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey`}
       />
