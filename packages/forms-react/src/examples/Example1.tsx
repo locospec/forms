@@ -57,6 +57,9 @@ const Example1 = () => {
 
   return (
     <div className="flex flex-col gap-x-4 px-3 py-2">
+      <div className="bg-black text-green-300 px-3 text-xs">
+        {JSON.stringify(data, null, 2)}
+      </div>
       <FormsProvider formsConfig={formsConfig} onChangeCallback={setData}>
         <FormRenderer wrapperClasses="py-3" />
         <div className="flex justify-end gap-x-4">
