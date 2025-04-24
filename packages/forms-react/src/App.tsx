@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { makeServer } from "./mocks/mirageServer";
 import Example1 from "./examples/Example1";
 
@@ -36,10 +36,12 @@ function App() {
           </header>
 
           <div className="flex-grow overflow-auto pt-4">
-            <Routes>
-              <Route path="*" children={<></>} />
-              <Route path="/example" children={<Example1 />} />
-            </Routes>
+            <BrowserRouter>
+              <Routes>
+                <Route path="*" element={<></>} />
+                <Route path="/example" element={<Example1 />} />
+              </Routes>
+            </BrowserRouter>
           </div>
         </div>
       </div>
