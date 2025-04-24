@@ -14,12 +14,19 @@ function PopoverTrigger({
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
 }
 
+interface PopoverContentProps
+  extends React.ComponentProps<typeof PopoverPrimitive.Content> {
+  className?: string;
+  containerRef?: any;
+}
+
 function PopoverContent({
   className,
   align = "center",
   sideOffset = 4,
+  containerRef,
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Content>) {
+}: PopoverContentProps) {
   return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
