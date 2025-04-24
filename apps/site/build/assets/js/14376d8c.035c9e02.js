@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[2347],{933:(e,s,t)=>{t.r(s),t.d(s,{default:()=>i});var u=t(4848);function i(){return(0,u.jsx)("div",{children:"Blueprint Page"})}}}]);
