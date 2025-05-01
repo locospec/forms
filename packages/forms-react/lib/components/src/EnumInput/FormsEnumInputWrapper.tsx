@@ -32,6 +32,7 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
   const { schema, path, handleChange, errors = null, required, data } = props;
   const {
     modelName,
+    title = "",
     dependsOn = [],
     options = [],
     allowedScopes = [],
@@ -137,6 +138,7 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
     <div className="ENUM-WRAPPER" ref={filterContainerRef}>
       <FormsEnumInput
         open={open}
+        title={title}
         setOpen={setOpen}
         isLoading={isLoading}
         setIsLoading={setIsLoading}

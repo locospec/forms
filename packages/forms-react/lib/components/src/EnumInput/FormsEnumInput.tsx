@@ -31,12 +31,14 @@ export interface FormsEnumInputInteface {
   setIsLoading?: any;
   errors?: any;
   required?: boolean;
+  title?: string;
 }
 
 const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
   options,
   filterContainerRef,
   model_name,
+  title,
   searchQuery,
   setSearchQuery,
   onChangeCallback,
@@ -79,16 +81,16 @@ const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
       <PopoverTrigger asChild>
         <div
           className={cn(
-            "relative flex items-center justify-start px-2 w-full gap-2 whitespace-nowrap rounded-md text-[10px] font-normal text-[#666666] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+            "relative rounded-none flex items-center justify-start px-2 w-full gap-2 whitespace-nowrap font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
             "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#EEEEEE]",
-            "h-14 px-4 py-2 border hover:bg-accent",
+            "h-14 px-4 py-2 border hover:bg-accent hover:text-brand-borderGrey",
             errors
               ? "border-red-500 text-[#d32f2f] focus-visible:ring-red-500"
-              : "border-border bg-background shadow-sm hover:text-accent-foreground"
+              : "border-border bg-background hover:text-accent-foreground"
           )}
           aria-expanded={open}
         >
-          <div className="max-w-[150px] truncate">
+          <div className="max-w-[150px]  truncate">
             {values && values.length > 0
               ? options
                   .filter((option) => values.includes(option?.const))
@@ -108,6 +110,21 @@ const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
               <ChevronDown className="shrink-0 opacity-50 hover:bg-accent" />
             </div>
           )}
+          <div
+            className={`absolute left-4 font-openSans font-normal text-wrap leading-[13px]  text-[10px] text-brand-borderGrey top-1.5 ${
+              !values ? "text-transparent" : ""
+            }    pointer-events-none  transition-all duration-300 `}
+          >
+            <p className="py-auto  flex flex-col justify-center h-full ">
+              {required
+                ? title
+                  ? title + "*"
+                  : placeholder + "*"
+                : title
+                ? title
+                : placeholder}
+            </p>
+          </div>
         </div>
       </PopoverTrigger>
       {errors && (

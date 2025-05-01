@@ -73,13 +73,12 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
                   value={showDateFormat(values)}
                   onChange={() => {}}
                   required
-                  className="bg-transparent border-none hover:cursor-pointer pointer-events-none py-4  peer  autofill:bg-white focus:border-brand-orange pb-[6px] h-[50px]  outline-none  border  w-full   font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey"
+                  focusBorderClasses="shadow-none"
+                  className="bg-transparent border-none hover:cursor-pointer !px-0 pointer-events-none py-4  peer  autofill:bg-white focus:border-brand-orange pb-[6px] h-[50px]  outline-none rounded-none  border  w-full   font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey"
                 />
                 <label
                   htmlFor="name"
-                  className={`absolute h-full font-openSans font-normal text-web-body-sm text-wrap mid:text-web-body-lg leading-3 mid:leading-5 ${
-                    !values ? "text-brand-borderGrey" : "text-transparent"
-                  }   left-0    pointer-events-none  transition-all duration-300 peer-valid:h-fit  peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-[10px] peer-focus:top-1.5 peer-focus:text-[10px]  peer-focus:leading-[13px] peer-focus:h-fit  peer-focus:text-brand-orange peer-valid:top-1 peer-valid:text-[10px] peer-valid:leading-[13px] peer-valid:text-brand-borderGrey`}
+                  className={`absolute font-openSans font-normal text-wrap leading-[13px]  text-[10px] text-brand-borderGrey top-1.5   left-0    pointer-events-none  transition-all duration-300 `}
                 >
                   <p className="py-auto  flex flex-col justify-center h-full ">
                     {required
