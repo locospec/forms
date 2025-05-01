@@ -1,7 +1,7 @@
 {
   "name": "locospec",
   "private": true,
-  "version": "0.0.1-canary.0",
+  "version": "1.0.1-canary.0",
   "main": "index.js",
   "scripts": {
     "lerna": "lerna",
