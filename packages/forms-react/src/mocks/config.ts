@@ -108,12 +108,21 @@ const UI_SCHEMA = {
         },
 
         {
-          type: "lens-calendar-date-time",
+          type: "lens-calendar",
           scope: "#/properties/auctionStartTime",
         },
         {
           type: "lens-switch",
           scope: "#/properties/vegetarian",
+        },
+      ],
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "lens-enum",
+          scope: "#/properties/nationality",
         },
       ],
     },

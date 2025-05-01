@@ -47,7 +47,8 @@ const FormsTextInput: React.FC<FormsTextInputInteface> = ({
             e.preventDefault();
           }
         }}
-        className={`bg-white  py-4 peer pl-4 autofill:bg-white focus:border-brand-orange pb-[6px] h-[50px]  outline-none  border  w-full   font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey`}
+        focusBorderClasses="focus-visible:border-brand-orange"
+        className={`bg-white  py-4 peer pl-4 autofill:bg-white pb-[6px] h-[50px]  border  w-full   font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey rounded-none `}
       />
       <label
         htmlFor="name"
