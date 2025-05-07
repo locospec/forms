@@ -56,7 +56,7 @@ const FormsDropdownInput: React.FC<FormsDropdownInputInteface> = ({
           hoverBgColor: "focus:bg-brand-lightOrange",
           hoverTextColor: "focus:text-brand-borderGrey",
           hideDot: true,
-          outerContainer: `border-[1px] min-w-[130px]   w-full rounded-l-none rounded-r-none h-[50px] font-openSans font-normal text-web-body-sm  mid:text-web-body-lg ${
+          outerContainer: `border-[1px] !shadow-none min-w-[130px] w-full rounded-l-none rounded-r-none !h-[50px] font-openSans font-normal text-web-body-sm  mid:text-web-body-lg ${
             values
               ? "items-end text-brand-textLightGrey"
               : "text-brand-borderGrey"
