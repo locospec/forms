@@ -59,7 +59,8 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     data: config,
     isFetched,
     isError,
-  } = useFetchConfig({
+    error,
+  }: any = useFetchConfig({
     configEndpoint,
     configCallback,
     permissionHeaders,
@@ -77,11 +78,12 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     initialData,
   } = configData || {};
 
-  if (isFetched && (!model || !dbOp)) {
+  if (isFetched && (!model || !dbOp) && !isError) {
     throw new Error(
       "Missing required config: 'model' and 'dbOp' must be present."
     );
   }
+
   const actionEndpoint = `${endpoint}/_${dbOp}`;
 
   const [formErrors, setFormErrors] = React.useState([]);
@@ -169,7 +171,14 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   );
 
   if (isError) {
-    return <div>Error</div>;
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="mt-4 text-4xl font-bold">
+          {error?.code} {error?.name}
+        </h1>
+        <p className="mt-2 max-w-md text-sm text-gray-600">{error?.message}</p>
+      </div>
+    );
   }
 
   return (
