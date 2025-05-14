@@ -19,7 +19,6 @@
         "defaultReleaseType": "patch"
       }
     ],
-    "released",
     [
       "omit-commits",
       {
