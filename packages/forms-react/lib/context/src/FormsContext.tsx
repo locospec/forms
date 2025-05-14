@@ -68,7 +68,6 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   });
 
   const configData = config?.data || {};
-  // const configMeta = config?.meta || {};
 
   const {
     model = "",
