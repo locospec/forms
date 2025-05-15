@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useFetchConfig } from "@/hooks";
+import { useFetchConfig } from "@forms/hooks";
 
 const queryClient = new QueryClient();
 

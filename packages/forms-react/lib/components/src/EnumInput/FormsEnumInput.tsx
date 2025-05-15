@@ -1,6 +1,6 @@
 import React from "react";
 import { Check, ChevronDown, Search, X } from "lucide-react";
-import { cn } from "@/utils";
+import { cn } from "@forms/utils";
 import {
   Command,
   CommandEmpty,
@@ -8,9 +8,9 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/base/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/base/popover";
-import { useFetchMoreOnScroll } from "@/hooks";
+} from "@forms/base/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@forms/base/popover";
+import { useFetchMoreOnScroll } from "@forms/hooks";
 
 export interface FormsEnumInputInteface {
   options: { title: string; const: string }[];

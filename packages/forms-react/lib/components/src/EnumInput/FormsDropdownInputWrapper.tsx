@@ -1,7 +1,10 @@
 import React from "react";
-import { useFormsContext } from "@/context";
-import { useInfiniteFetch } from "@/hooks/src/useInfiniteFetch";
-import { useDebouncedEffectAfterMount, useEffectAfterMount } from "@/hooks";
+import { useFormsContext } from "@forms/context";
+import { useInfiniteFetch } from "@forms/hooks/src/useInfiniteFetch";
+import {
+  useDebouncedEffectAfterMount,
+  useEffectAfterMount,
+} from "@forms/hooks";
 import { generateFilter, generateTitleName } from "./utils";
 import { FormsDropdownInput } from "./FormsDropdownInput";
 

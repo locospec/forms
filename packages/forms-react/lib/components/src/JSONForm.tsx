@@ -1,26 +1,26 @@
 import React from "react";
 import { JsonForms } from "@jsonforms/react";
-import { materialRenderers, materialCells } from "@/material-renderers";
-import { useFormsContext } from "@/context";
+import { materialRenderers, materialCells } from "@forms/material-renderers";
+import { useFormsContext } from "@forms/context";
 import { createTheme, ThemeProvider } from "@mui/material";
 import LensEnumControl, {
   lensEnumControlTester,
-} from "@/material-renderers/controls/LensEnumControl";
+} from "@forms/material-renderers/controls/LensEnumControl";
 import LensTextControl, {
   lensTextControlTester,
-} from "@/material-renderers/controls/LensTextControl";
+} from "@forms/material-renderers/controls/LensTextControl";
 import LensDropdownControl, {
   lensDropdownControlTester,
-} from "@/material-renderers/controls/LensDropdownControl";
+} from "@forms/material-renderers/controls/LensDropdownControl";
 import LensCalendarControl, {
   lensCalendarControlTester,
-} from "@/material-renderers/controls/LensCalendarControl";
+} from "@forms/material-renderers/controls/LensCalendarControl";
 import LensSwitchControl, {
   lensSwitchControlTester,
-} from "@/material-renderers/controls/LensSwitchControl";
+} from "@forms/material-renderers/controls/LensSwitchControl";
 import LensCalendarDateTimeControl, {
   lensCalendarDateTimeControlTester,
-} from "@/material-renderers/controls/LensCalendarDateTimeControl";
+} from "@forms/material-renderers/controls/LensCalendarDateTimeControl";
 
 interface JSONFormsInterface {
   onChangeCallback?: any;

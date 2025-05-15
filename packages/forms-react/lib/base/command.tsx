@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
 import { SearchIcon } from "lucide-react";
-import { cn } from "@/utils";
+import { cn } from "@forms/utils";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/base/dialog";
+} from "@forms/base/dialog";
 
 function Command({
   className,
