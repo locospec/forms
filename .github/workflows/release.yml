@@ -43,4 +43,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           export LOG_LEVEL=verbose
-          DEBUG=auto*,lerna*,npm* timeout 3m npx auto shipit -v
+          DEBUG=auto*,lerna*,npm* timeout 10m npx auto shipit -v
