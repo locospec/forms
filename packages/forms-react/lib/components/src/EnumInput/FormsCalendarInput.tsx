@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Calendar } from "@/base/calendar";
-import { Popover, PopoverTrigger, PopoverContent } from "@/base/popover";
-import { Input } from "@/base/input";
-import { Button } from "@/base/button";
+import { Calendar } from "@forms/base/calendar";
+import { Popover, PopoverTrigger, PopoverContent } from "@forms/base/popover";
+import { Input } from "@forms/base/input";
+import { Button } from "@forms/base/button";
 import { CalendarIcon } from "lucide-react";
 
 export interface FormsCalendarInputInteface {

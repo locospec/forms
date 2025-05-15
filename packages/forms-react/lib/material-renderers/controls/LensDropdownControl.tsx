@@ -43,7 +43,7 @@ import {
   MuiAutocomplete,
   WithOptionLabel,
 } from "../mui-controls/MuiAutocomplete";
-import { FormsDropdownInputWrapper } from "@/components/src/EnumInput/FormsDropdownInputWrapper";
+import { FormsDropdownInputWrapper } from "@forms/components/src/EnumInput/FormsDropdownInputWrapper";
 
 export const LensDropdownControl = (
   props: ControlProps & OwnPropsOfEnum & WithOptionLabel & TranslateProps

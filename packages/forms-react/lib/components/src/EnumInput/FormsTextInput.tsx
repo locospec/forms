@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "@/base/input";
+import { Input } from "@forms/base/input";
 
 export interface FormsTextInputInteface {
   contentType: string;

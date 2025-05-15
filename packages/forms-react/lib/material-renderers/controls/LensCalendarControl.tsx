@@ -43,7 +43,7 @@ import {
   MuiAutocomplete,
   WithOptionLabel,
 } from "../mui-controls/MuiAutocomplete";
-import { FormsCalendarInputWrapper } from "@/components/src/EnumInput/FormsCalendarInputWrapper";
+import { FormsCalendarInputWrapper } from "@forms/components/src/EnumInput/FormsCalendarInputWrapper";
 
 export const LensCalendarControl = (
   props: ControlProps & OwnPropsOfEnum & WithOptionLabel & TranslateProps

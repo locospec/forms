@@ -1,8 +1,11 @@
 import React from "react";
-import { useFormsContext } from "@/context";
-import { useInfiniteFetch } from "@/hooks/src/useInfiniteFetch";
+import { useFormsContext } from "@forms/context";
+import { useInfiniteFetch } from "@forms/hooks/src/useInfiniteFetch";
 import { FormsEnumInput } from "./FormsEnumInput";
-import { useDebouncedEffectAfterMount, useEffectAfterMount } from "@/hooks";
+import {
+  useDebouncedEffectAfterMount,
+  useEffectAfterMount,
+} from "@forms/hooks";
 import { capitaliseFirstLetter, generateFilter } from "./utils";
 
 export interface FormsEnumInputWrapperInterface {

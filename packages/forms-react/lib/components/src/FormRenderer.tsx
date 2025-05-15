@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/utils";
+import { cn } from "@forms/utils";
 import JSONForm from "./JSONForm";
 
 export interface FormRendererInterface {

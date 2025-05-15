@@ -43,7 +43,7 @@ import {
   MuiAutocomplete,
   WithOptionLabel,
 } from "../mui-controls/MuiAutocomplete";
-import { FormsTextInputWrapper } from "@/components/src/EnumInput";
+import { FormsTextInputWrapper } from "@forms/components/src/EnumInput";
 
 export const LensTextControl = (
   props: ControlProps & OwnPropsOfEnum & WithOptionLabel & TranslateProps

@@ -1,4 +1,4 @@
-import { Switch } from "@/base/switch";
+import { Switch } from "@forms/base/switch";
 import React from "react";
 
 export interface FormsSwitchInputInteface {
