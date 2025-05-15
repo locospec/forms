@@ -59,12 +59,12 @@ function Calendar({
         past: (date) => isBefore(date, today),
       }}
       components={{
-        IconLeft: () => (
+        PreviousMonthButton: () => (
           <p>
             <ChevronLeft className="h-4 w-4" />
           </p>
         ),
-        IconRight: () => (
+        NextMonthButton: () => (
           <p>
             <ChevronRight className="h-4 w-4" />
           </p>
