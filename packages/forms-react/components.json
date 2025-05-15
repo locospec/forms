@@ -10,11 +10,11 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "@/base/components",
-    "utils": "@/base/lib/utils",
-    "ui": "@/base/components/ui",
-    "lib": "@/base/lib",
-    "hooks": "@/base/hooks"
+    "components": "@forms/base/components",
+    "utils": "@forms/base/lib/utils",
+    "ui": "@forms/base/components/ui",
+    "lib": "@forms/base/lib",
+    "hooks": "@forms/base/hooks"
   },
   "iconLibrary": "lucide"
 }
