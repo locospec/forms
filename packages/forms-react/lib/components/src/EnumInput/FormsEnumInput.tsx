@@ -1,6 +1,3 @@
-import React from "react";
-import { Check, ChevronDown, Search, X } from "lucide-react";
-import { cn } from "@forms/utils";
 import {
   Command,
   CommandEmpty,
@@ -8,9 +5,12 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@forms/base/command";
+} from "@/components/ui/command";
+import { cn } from "@/lib/utils";
 import { Popover, PopoverContent, PopoverTrigger } from "@forms/base/popover";
 import { useFetchMoreOnScroll } from "@forms/hooks";
+import { Check, ChevronDown, Search, X } from "lucide-react";
+import React from "react";
 
 export interface FormsEnumInputInteface {
   options: { title: string; const: string }[];
@@ -81,54 +81,54 @@ const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
       <PopoverTrigger asChild>
         <div
           className={cn(
-            "relative rounded-none flex items-center justify-start px-2 w-full gap-2 whitespace-nowrap font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-            "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#EEEEEE]",
-            "h-14 px-4 py-2 border hover:bg-accent hover:text-brand-borderGrey",
+            "font-openSans text-web-body-sm text-brand-textLightGrey focus-visible:ring-ring relative flex w-full items-center justify-start gap-2 rounded-none px-2 leading-4 font-normal whitespace-nowrap transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+            "bg-[#EEEEEE] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+            "hover:bg-accent hover:text-brand-borderGrey h-14 border px-4 py-2",
             errors
               ? "border-red-500 text-[#d32f2f] focus-visible:ring-red-500"
               : "border-border bg-background hover:text-accent-foreground"
           )}
           aria-expanded={open}
         >
-          <div className="max-w-[150px]  truncate">
+          <div className="max-w-[150px] truncate">
             {values && values.length > 0
               ? options
-                  .filter((option) => values.includes(option?.const))
-                  .map((option) => option.title)
+                  .filter(option => values.includes(option?.const))
+                  .map(option => option.title)
                   .join(",")
               : `${placeholder} ${required ? "*" : ""}`}
           </div>
           {values && values.length > 0 ? (
             <div
-              className="h-4 w-4 absolute right-2 hover:bg-aaccent"
+              className="hover:bg-aaccent absolute right-2 h-4 w-4"
               onClick={handleInputClear}
             >
               <X className="shrink-0 opacity-50" />
             </div>
           ) : (
-            <div className="h-4 w-4 absolute right-2">
-              <ChevronDown className="shrink-0 opacity-50 hover:bg-accent" />
+            <div className="absolute right-2 h-4 w-4">
+              <ChevronDown className="hover:bg-accent shrink-0 opacity-50" />
             </div>
           )}
           <div
-            className={`absolute left-4 font-openSans font-normal text-wrap leading-[13px]  text-[10px] text-brand-borderGrey top-1.5 ${
+            className={`font-openSans text-brand-borderGrey absolute top-1.5 left-4 text-[10px] leading-[13px] font-normal text-wrap ${
               !values ? "text-transparent" : ""
-            }    pointer-events-none  transition-all duration-300 `}
+            } pointer-events-none transition-all duration-300`}
           >
-            <p className="py-auto  flex flex-col justify-center h-full ">
+            <p className="py-auto flex h-full flex-col justify-center">
               {required
                 ? title
                   ? title + "*"
                   : placeholder + "*"
                 : title
-                ? title
-                : placeholder}
+                  ? title
+                  : placeholder}
             </p>
           </div>
         </div>
       </PopoverTrigger>
       {errors && (
-        <label className="text-[#d32f2f] text-xs ml-[14px]">{errors}</label>
+        <label className="ml-[14px] text-xs text-[#d32f2f]">{errors}</label>
       )}
       <PopoverContent
         className="w-[280px] max-w-[300px] p-0"
@@ -142,11 +142,11 @@ const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
             <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
             <input
               className={cn(
-                "flex h-8 border-0 w-full bg-transparent py-1 text-sm outline-none placeholder:text-muted-foreground hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50"
+                "placeholder:text-muted-foreground flex h-8 w-full border-0 bg-transparent py-1 text-sm outline-none hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50"
               )}
               value={searchQuery}
               placeholder={placeholder}
-              onChange={(e) => {
+              onChange={e => {
                 setSearchQuery(e.target.value);
               }}
             />
@@ -155,16 +155,14 @@ const FormsEnumInput: React.FC<FormsEnumInputInteface> = ({
           <CommandList
             ref={containerRef}
             key={model_name}
-            onScroll={(e) =>
-              fetchMoreOnBottomReached(e.target as HTMLDivElement)
-            }
+            onScroll={e => fetchMoreOnBottomReached(e.target as HTMLDivElement)}
           >
             <CommandEmpty>
               {isLoading ? "Loading options" : "NO options found"}
             </CommandEmpty>
             <CommandGroup>
               {!isLoading &&
-                options.map((option) => {
+                options.map(option => {
                   return (
                     <CommandItem
                       key={option?.const}

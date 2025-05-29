@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import { Calendar } from "@forms/base/calendar";
-import { Popover, PopoverTrigger, PopoverContent } from "@forms/base/popover";
 import { Input } from "@forms/base/input";
-import { Button } from "@forms/base/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@forms/base/popover";
 import { CalendarIcon } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 export interface FormsCalendarDateTimeInterface {
   onChangeCallback?: (val: string) => void;
@@ -91,9 +91,9 @@ const FormsCalendarDateTime: React.FC<FormsCalendarDateTimeInterface> = ({
         <PopoverTrigger asChild>
           <Button
             variant={"outline"}
-            className="w-full h-[50px] rounded-none font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey"
+            className="font-openSans text-web-body-sm text-brand-textLightGrey h-[50px] w-full rounded-none leading-4 font-normal"
           >
-            <div className="flex justify-between w-full items-center">
+            <div className="flex w-full items-center justify-between">
               <div className="relative w-full">
                 <Input
                   id="name"
@@ -111,28 +111,28 @@ const FormsCalendarDateTime: React.FC<FormsCalendarDateTimeInterface> = ({
                   }
                   onChange={() => {}}
                   required
-                  className="bg-transparent border-none !px-0 hover:cursor-pointer pointer-events-none peer autofill:bg-white focus:border-brand-orange pb-[6px] pt-4 h-[50px] outline-none border w-full font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey"
+                  className="peer focus:border-brand-orange font-openSans text-web-body-sm text-brand-textLightGrey pointer-events-none h-[50px] w-full border border-none bg-transparent !px-0 pt-4 pb-[6px] leading-4 font-normal outline-none autofill:bg-white hover:cursor-pointer"
                 />
                 <label
                   htmlFor="name"
-                  className={`absolute font-openSans font-normal text-wrap leading-[13px]  text-[10px] text-brand-borderGrey top-1.5   left-0    pointer-events-none  transition-all duration-300 `}
+                  className={`font-openSans text-brand-borderGrey pointer-events-none absolute top-1.5 left-0 text-[10px] leading-[13px] font-normal text-wrap transition-all duration-300`}
                 >
-                  <p className="py-auto  flex flex-col justify-center h-full ">
+                  <p className="py-auto flex h-full flex-col justify-center">
                     {required
                       ? title
                         ? title + "*"
                         : placeholder + "*"
                       : title
-                      ? title
-                      : placeholder}
+                        ? title
+                        : placeholder}
                   </p>
                 </label>
               </div>
-              <CalendarIcon className="ml-auto h-6 w-6 " />
+              <CalendarIcon className="ml-auto h-6 w-6" />
             </div>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className=" w-auto p-0" align="start">
+        <PopoverContent className="w-auto p-0" align="start">
           <div className="mobile:flex">
             <Calendar
               mode="single"
@@ -141,13 +141,13 @@ const FormsCalendarDateTime: React.FC<FormsCalendarDateTimeInterface> = ({
                 nav_button_next: "absolute right-1 border-none",
               }}
               selected={selectedDateTime}
-              onSelect={(e) => handleDateSelect(e)}
-              disabled={(date) => date < new Date()}
+              onSelect={e => handleDateSelect(e)}
+              disabled={date => date < new Date()}
               initialFocus
             />
-            <div className="px-6 py-1 mobile:py-3 border rounded-lg pl-16 mobile:pl-6  flex mobile:flex-col items-center">
-              <p className="mb-2 mobile:mb-0">Time</p>
-              <ul className="space-y-1 mobile:mt-3 ml-5 mobile:ml-0 overflow-y-auto  h-[90px]  mobile:h-[230px]">
+            <div className="mobile:py-3 mobile:pl-6 mobile:flex-col flex items-center rounded-lg border px-6 py-1 pl-16">
+              <p className="mobile:mb-0 mb-2">Time</p>
+              <ul className="mobile:mt-3 mobile:ml-0 mobile:h-[230px] ml-5 h-[90px] space-y-1 overflow-y-auto">
                 {times.map((time, index) => {
                   const [h, m] = time.split(":").map(Number);
                   const isSelected =
@@ -158,9 +158,9 @@ const FormsCalendarDateTime: React.FC<FormsCalendarDateTimeInterface> = ({
                     <li
                       key={index}
                       onClick={() => handleTimeSelect(time)}
-                      className={`p-0.5 hover:cursor-pointer w-[100px] mobile:w-auto font-openSans font-normal text-web-body-md leading-5 hover:bg-brand-bgBlack hover:text-white text-center ${
+                      className={`mobile:w-auto font-openSans text-web-body-md hover:bg-brand-bgBlack w-[100px] p-0.5 text-center leading-5 font-normal hover:cursor-pointer hover:text-white ${
                         isSelected ? "bg-brand-bgBlack text-white" : "bg-white"
-                      }  rounded `}
+                      } rounded`}
                     >
                       {time}
                     </li>
