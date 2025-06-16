@@ -1,7 +1,7 @@
-import React, { createContext } from "react";
+import { useFetchConfig } from "@/locospec/forms-react/lib/hooks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useFetchConfig } from "@forms/hooks";
+import React, { createContext } from "react";
 
 const queryClient = new QueryClient();
 

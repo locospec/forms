@@ -1,4 +1,4 @@
-import { Switch } from "@forms/base/switch";
+import { Switch } from "@/locospec/forms-react/lib/base/switch";
 import React from "react";
 
 export interface FormsSwitchInputInteface {
@@ -28,23 +28,23 @@ const FormsSwitchInput: React.FC<FormsSwitchInputInteface> = ({
   };
 
   return (
-    <div className="flex gap-x-4 items-center h-full ">
+    <div className="flex h-full items-center gap-x-4">
       <Switch
         thumbClassName="h-6 w-6 data-[state=unchecked]:bg-brand-textGrey"
         checked={values !== "" ? values : false}
-        onCheckedChange={(checked) => {
+        onCheckedChange={checked => {
           handleSwitchChange(checked);
         }}
-        className=" data-[state=unchecked]:bg-transparent hidden lg:flex  data-[state=unchecked]:border-2 data-[state=unchecked]:border-brand-textGrey p-1 h-8 w-[52px] data-[state=unchecked]:text-brand-textGrey"
+        className="data-[state=unchecked]:border-brand-textGrey data-[state=unchecked]:text-brand-textGrey hidden h-8 w-[52px] p-1 data-[state=unchecked]:border-2 data-[state=unchecked]:bg-transparent lg:flex"
       />
-      <p className="font-openSans font-normal text-web-body-sm leading-[14px] text-brand-textGrey">
+      <p className="font-openSans text-web-body-sm text-brand-textGrey leading-[14px] font-normal">
         {required
           ? title
             ? title + "*"
             : placeholder + "*"
           : title
-          ? title
-          : placeholder}
+            ? title
+            : placeholder}
       </p>
       {errors && (
         <label
