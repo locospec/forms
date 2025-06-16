@@ -1,13 +1,9 @@
-import { Button } from "@/locospec/forms-react/lib/base/button";
-import { Calendar } from "@/locospec/forms-react/lib/base/calendar";
-import { Input } from "@/locospec/forms-react/lib/base/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/locospec/forms-react/lib/base/popover";
-import { CalendarIcon } from "lucide-react";
 import React, { useState } from "react";
+import { Calendar } from "@forms/base/calendar";
+import { Popover, PopoverTrigger, PopoverContent } from "@forms/base/popover";
+import { Input } from "@forms/base/input";
+import { Button } from "@forms/base/button";
+import { CalendarIcon } from "lucide-react";
 
 export interface FormsCalendarInputInteface {
   onChangeCallback?: any;
@@ -67,10 +63,10 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
           <Button
             variant={"outline"}
             className={
-              "font-openSans text-web-body-sm text-brand-textLightGrey h-[50px] w-full rounded-none leading-4 font-normal"
+              "w-full h-[50px] rounded-none font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey"
             }
           >
-            <div className="flex w-full items-center justify-between">
+            <div className="flex justify-between w-full items-center">
               <div className="relative w-full">
                 <Input
                   id="calendar-component"
@@ -78,24 +74,24 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
                   onChange={() => {}}
                   required
                   focusBorderClasses="shadow-none"
-                  className="peer focus:border-brand-orange font-openSans text-web-body-sm text-brand-textLightGrey pointer-events-none h-[50px] w-full rounded-none border border-none bg-transparent !px-0 py-4 pb-[6px] leading-4 font-normal outline-none autofill:bg-white hover:cursor-pointer"
+                  className="bg-transparent border-none hover:cursor-pointer !px-0 pointer-events-none py-4  peer  autofill:bg-white focus:border-brand-orange pb-[6px] h-[50px]  outline-none rounded-none  border  w-full   font-openSans font-normal text-web-body-sm leading-4 text-brand-textLightGrey"
                 />
                 <label
                   htmlFor="name"
-                  className={`font-openSans text-brand-borderGrey pointer-events-none absolute top-1.5 left-0 text-[10px] leading-[13px] font-normal text-wrap transition-all duration-300`}
+                  className={`absolute font-openSans font-normal text-wrap leading-[13px]  text-[10px] text-brand-borderGrey top-1.5   left-0    pointer-events-none  transition-all duration-300 `}
                 >
-                  <p className="py-auto flex h-full flex-col justify-center">
+                  <p className="py-auto  flex flex-col justify-center h-full ">
                     {required
                       ? title
                         ? title + "*"
                         : placeholder + "*"
                       : title
-                        ? title
-                        : placeholder}
+                      ? title
+                      : placeholder}
                   </p>
                 </label>
               </div>
-              <CalendarIcon className="ml-auto h-6 w-6" />
+              <CalendarIcon className="ml-auto h-6 w-6 " />
             </div>
           </Button>
         </PopoverTrigger>
@@ -107,8 +103,8 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
               nav_button_next: "absolute right-1 border-none",
             }}
             selected={date}
-            onSelect={e => handleDateSelect(e)}
-            disabled={date => date < new Date()}
+            onSelect={(e) => handleDateSelect(e)}
+            disabled={(date) => date < new Date()}
             initialFocus
           />
         </PopoverContent>
