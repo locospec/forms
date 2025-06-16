@@ -1,26 +1,29 @@
-import React from "react";
-import { JsonForms } from "@jsonforms/react";
-import { materialRenderers, materialCells } from "@forms/material-renderers";
-import { useFormsContext } from "@forms/context";
-import { createTheme, ThemeProvider } from "@mui/material";
-import LensEnumControl, {
-  lensEnumControlTester,
-} from "@forms/material-renderers/controls/LensEnumControl";
-import LensTextControl, {
-  lensTextControlTester,
-} from "@forms/material-renderers/controls/LensTextControl";
-import LensDropdownControl, {
-  lensDropdownControlTester,
-} from "@forms/material-renderers/controls/LensDropdownControl";
+import { useFormsContext } from "@/locospec/forms-react/lib/context";
+import {
+  materialCells,
+  materialRenderers,
+} from "@/locospec/forms-react/lib/material-renderers";
 import LensCalendarControl, {
   lensCalendarControlTester,
-} from "@forms/material-renderers/controls/LensCalendarControl";
-import LensSwitchControl, {
-  lensSwitchControlTester,
-} from "@forms/material-renderers/controls/LensSwitchControl";
+} from "@/locospec/forms-react/lib/material-renderers/controls/LensCalendarControl";
 import LensCalendarDateTimeControl, {
   lensCalendarDateTimeControlTester,
-} from "@forms/material-renderers/controls/LensCalendarDateTimeControl";
+} from "@/locospec/forms-react/lib/material-renderers/controls/LensCalendarDateTimeControl";
+import LensDropdownControl, {
+  lensDropdownControlTester,
+} from "@/locospec/forms-react/lib/material-renderers/controls/LensDropdownControl";
+import LensEnumControl, {
+  lensEnumControlTester,
+} from "@/locospec/forms-react/lib/material-renderers/controls/LensEnumControl";
+import LensSwitchControl, {
+  lensSwitchControlTester,
+} from "@/locospec/forms-react/lib/material-renderers/controls/LensSwitchControl";
+import LensTextControl, {
+  lensTextControlTester,
+} from "@/locospec/forms-react/lib/material-renderers/controls/LensTextControl";
+import { JsonForms } from "@jsonforms/react";
+import { createTheme, ThemeProvider } from "@mui/material";
+import React from "react";
 
 interface JSONFormsInterface {
   onChangeCallback?: any;

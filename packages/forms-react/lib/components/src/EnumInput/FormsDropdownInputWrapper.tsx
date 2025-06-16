@@ -1,12 +1,12 @@
-import React from "react";
-import { useFormsContext } from "@forms/context";
-import { useInfiniteFetch } from "@forms/hooks/src/useInfiniteFetch";
+import { useFormsContext } from "@/locospec/forms-react/lib/context";
 import {
   useDebouncedEffectAfterMount,
   useEffectAfterMount,
-} from "@forms/hooks";
-import { generateFilter, generateTitleName } from "./utils";
+} from "@/locospec/forms-react/lib/hooks";
+import { useInfiniteFetch } from "@/locospec/forms-react/lib/hooks/src/useInfiniteFetch";
+import React from "react";
 import { FormsDropdownInput } from "./FormsDropdownInput";
+import { generateFilter, generateTitleName } from "./utils";
 
 export interface FormsDropdownInputWrapperInterface {
   placeholder?: string;
@@ -29,7 +29,7 @@ export interface FormsDropdownInputWrapperInterface {
 
 const FormsDropdownInputWrapper: React.FC<
   FormsDropdownInputWrapperInterface
-> = (props) => {
+> = props => {
   const { baseEndpoint, formData, permissionHeaders } = useFormsContext();
   const { schema, path, handleChange, errors = null, required, data } = props;
   const { modelName, dependsOn = [], options = [] } = schema;

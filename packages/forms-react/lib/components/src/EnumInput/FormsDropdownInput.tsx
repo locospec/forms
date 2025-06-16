@@ -1,5 +1,5 @@
+import { Dropdown } from "@/locospec/forms-react/lib/base/dropdown";
 import React from "react";
-import { Dropdown } from "@forms/base/dropdown";
 
 export interface FormsDropdownInputInteface {
   options: { title: string; const: string }[];
@@ -37,7 +37,7 @@ const FormsDropdownInput: React.FC<FormsDropdownInputInteface> = ({
   };
 
   return (
-    <div className="w-full relative ">
+    <div className="relative w-full">
       <Dropdown
         dataSource={() => {
           return Promise.resolve(options);
@@ -65,7 +65,7 @@ const FormsDropdownInput: React.FC<FormsDropdownInputInteface> = ({
       />
 
       <div
-        className={`absolute top-1 text-[10px] transition-all duration-300  left-3 ${
+        className={`absolute top-1 left-3 text-[10px] transition-all duration-300 ${
           values ? "text-brand-borderGrey" : "text-transparent"
         }`}
       >
