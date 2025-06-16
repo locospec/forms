@@ -23,9 +23,10 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import { FormsCalendarDateTimeWrapper } from "@/locospec/forms-react/lib/components/src/EnumInput/FormsCalendarDateTimeWrapper";
+import React from "react";
 import {
   ControlProps,
+  isEnumControl,
   OwnPropsOfEnum,
   RankedTester,
   rankWith,
@@ -35,9 +36,14 @@ import {
   withJsonFormsEnumProps,
   withTranslateProps,
 } from "@jsonforms/react";
+import { MuiSelect } from "../mui-controls/MuiSelect";
 import merge from "lodash/merge";
-import React from "react";
-import { WithOptionLabel } from "../mui-controls/MuiAutocomplete";
+import { MaterialInputControl } from "./MaterialInputControl";
+import {
+  MuiAutocomplete,
+  WithOptionLabel,
+} from "../mui-controls/MuiAutocomplete";
+import { FormsCalendarDateTimeWrapper } from "@forms/components/src/EnumInput/FormsCalendarDateTimeWrapper";
 
 export const LensCalendarDateTimeControl = (
   props: ControlProps & OwnPropsOfEnum & WithOptionLabel & TranslateProps
@@ -51,7 +57,7 @@ export const LensCalendarDateTimeControl = (
 
 export const lensCalendarDateTimeControlTester: RankedTester = rankWith(
   2,
-  props => {
+  (props) => {
     if (props?.type === "lens-calendar-date-time") return true;
   }
 );

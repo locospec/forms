@@ -1,6 +1,6 @@
-import { cn } from "@/locospec/forms-react/lib/utils";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
 import * as React from "react";
+import * as PopoverPrimitive from "@radix-ui/react-popover";
+import { cn } from "@forms/utils";
 
 function Popover({
   ...props
@@ -49,4 +49,4 @@ function PopoverAnchor({
   return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />;
 }
 
-export { Popover, PopoverAnchor, PopoverContent, PopoverTrigger };
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor };

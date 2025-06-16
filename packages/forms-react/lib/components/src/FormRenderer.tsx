@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import React from "react";
+import { cn } from "@forms/utils";
 import JSONForm from "./JSONForm";
 
 export interface FormRendererInterface {
@@ -12,7 +12,7 @@ const FormRenderer: React.FC<FormRendererInterface> = ({
   onChangeCallback,
 }) => {
   return (
-    <div className={cn("flex flex-col px-4", wrapperClasses)}>
+    <div className={cn("px-4 flex flex-col", wrapperClasses)}>
       <JSONForm onChangeCallback={onChangeCallback} />
     </div>
   );

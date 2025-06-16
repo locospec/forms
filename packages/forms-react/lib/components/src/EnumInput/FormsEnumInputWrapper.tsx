@@ -1,11 +1,11 @@
-import { useFormsContext } from "@/locospec/forms-react/lib/context";
+import React from "react";
+import { useFormsContext } from "@forms/context";
+import { useInfiniteFetch } from "@forms/hooks/src/useInfiniteFetch";
+import { FormsEnumInput } from "./FormsEnumInput";
 import {
   useDebouncedEffectAfterMount,
   useEffectAfterMount,
-} from "@/locospec/forms-react/lib/hooks";
-import { useInfiniteFetch } from "@/locospec/forms-react/lib/hooks/src/useInfiniteFetch";
-import React from "react";
-import { FormsEnumInput } from "./FormsEnumInput";
+} from "@forms/hooks";
 import { capitaliseFirstLetter, generateFilter } from "./utils";
 
 export interface FormsEnumInputWrapperInterface {
@@ -27,14 +27,14 @@ export interface FormsEnumInputWrapperInterface {
   data: any;
 }
 
-const FormsEnumInputWrapper: React.FC<
-  FormsEnumInputWrapperInterface
-> = props => {
+const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
+  props
+) => {
   const { baseEndpoint, formData, permissionHeaders, context } =
     useFormsContext();
   const { schema, path, handleChange, errors = null, required, data } = props;
   const {
-    relatedModelName,
+    modelName,
     title = "",
     dependsOn = [],
     options = [],
@@ -44,11 +44,11 @@ const FormsEnumInputWrapper: React.FC<
   const [searchQuery, setSearchQuery] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const shouldFetch = relatedModelName && options.length === 0;
+  const shouldFetch = modelName && options.length === 0;
 
   const placeholder = capitaliseFirstLetter(path as unknown as string);
 
-  const query_key = `${relatedModelName}&options`;
+  const query_key = `${modelName}&options`;
 
   const filterContainerRef = React.useRef<HTMLDivElement>(null);
   const relationQueryEndpoint = `${baseEndpoint}/_read_relation_options`;
@@ -73,7 +73,7 @@ const FormsEnumInputWrapper: React.FC<
         endpoint: relationQueryEndpoint,
         keepPreviousData: true,
         body: {
-          relation: relatedModelName,
+          relation: modelName,
           filters: generateFilter(formData, dependsOn),
           ...(context &&
             (Object.keys(context).length > 0 || searchQuery !== "") && {
@@ -147,7 +147,7 @@ const FormsEnumInputWrapper: React.FC<
         setIsLoading={setIsLoading}
         options={enum_options}
         filterContainerRef={filterContainerRef}
-        model_name={relatedModelName}
+        model_name={modelName}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onChangeCallback={handleValueChange}

@@ -23,9 +23,10 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import { FormsTextInputWrapper } from "@/locospec/forms-react/lib/components/src/EnumInput";
+import React from "react";
 import {
   ControlProps,
+  isEnumControl,
   OwnPropsOfEnum,
   RankedTester,
   rankWith,
@@ -35,9 +36,14 @@ import {
   withJsonFormsEnumProps,
   withTranslateProps,
 } from "@jsonforms/react";
+import { MuiSelect } from "../mui-controls/MuiSelect";
 import merge from "lodash/merge";
-import React from "react";
-import { WithOptionLabel } from "../mui-controls/MuiAutocomplete";
+import { MaterialInputControl } from "./MaterialInputControl";
+import {
+  MuiAutocomplete,
+  WithOptionLabel,
+} from "../mui-controls/MuiAutocomplete";
+import { FormsTextInputWrapper } from "@forms/components/src/EnumInput";
 
 export const LensTextControl = (
   props: ControlProps & OwnPropsOfEnum & WithOptionLabel & TranslateProps
@@ -49,7 +55,7 @@ export const LensTextControl = (
   return <FormsTextInputWrapper {...props} />;
 };
 
-export const lensTextControlTester: RankedTester = rankWith(2, props => {
+export const lensTextControlTester: RankedTester = rankWith(2, (props) => {
   if (props?.type === "lens-text-input") return true;
 });
 
