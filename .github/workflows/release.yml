@@ -42,4 +42,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npx auto shipit
+          export LOG_LEVEL=verbose
+          DEBUG=auto*,lerna*,npm* timeout 10m npx auto shipit -v

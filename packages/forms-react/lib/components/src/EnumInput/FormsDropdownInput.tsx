@@ -1,5 +1,5 @@
 import React from "react";
-import { Dropdown } from "@/base/dropdown";
+import { Dropdown } from "@forms/base/dropdown";
 
 export interface FormsDropdownInputInteface {
   options: { title: string; const: string }[];

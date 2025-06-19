@@ -1,8 +1,11 @@
+import { useFormsContext } from "@forms/context";
+import {
+  useDebouncedEffectAfterMount,
+  useEffectAfterMount,
+} from "@forms/hooks";
+import { useInfiniteFetch } from "@forms/hooks/src/useInfiniteFetch";
 import React from "react";
-import { useFormsContext } from "@/context";
-import { useInfiniteFetch } from "@/hooks/src/useInfiniteFetch";
 import { FormsEnumInput } from "./FormsEnumInput";
-import { useDebouncedEffectAfterMount, useEffectAfterMount } from "@/hooks";
 import { capitaliseFirstLetter, generateFilter } from "./utils";
 
 export interface FormsEnumInputWrapperInterface {
@@ -31,7 +34,7 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
     useFormsContext();
   const { schema, path, handleChange, errors = null, required, data } = props;
   const {
-    modelName,
+    relatedModelName,
     title = "",
     dependsOn = [],
     options = [],
@@ -41,11 +44,11 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
   const [searchQuery, setSearchQuery] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const shouldFetch = modelName && options.length === 0;
+  const shouldFetch = relatedModelName && options.length === 0;
 
   const placeholder = capitaliseFirstLetter(path as unknown as string);
 
-  const query_key = `${modelName}&options`;
+  const query_key = `${relatedModelName}&options`;
 
   const filterContainerRef = React.useRef<HTMLDivElement>(null);
   const relationQueryEndpoint = `${baseEndpoint}/_read_relation_options`;
@@ -70,7 +73,7 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
         endpoint: relationQueryEndpoint,
         keepPreviousData: true,
         body: {
-          relation: modelName,
+          relation: relatedModelName,
           filters: generateFilter(formData, dependsOn),
           ...(context &&
             (Object.keys(context).length > 0 || searchQuery !== "") && {
@@ -144,7 +147,7 @@ const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
         setIsLoading={setIsLoading}
         options={enum_options}
         filterContainerRef={filterContainerRef}
-        model_name={modelName}
+        model_name={relatedModelName}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onChangeCallback={handleValueChange}

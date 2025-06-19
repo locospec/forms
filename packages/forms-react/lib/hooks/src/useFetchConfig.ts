@@ -26,11 +26,17 @@ const useFetchConfig = ({
       body: JSON.stringify(body),
     });
 
+    const config = await response.json();
+
     if (!response.ok) {
-      throw new Error("Failed to fetch table configuration.");
+      const error: any = new Error(
+        config?.error || "Failed to fetch table configuration."
+      );
+      error.name = response?.statusText;
+      error.code = response?.status;
+      throw error;
     }
 
-    const config = await response.json();
     return config;
   };
 

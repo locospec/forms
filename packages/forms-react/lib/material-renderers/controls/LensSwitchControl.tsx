@@ -43,7 +43,7 @@ import {
   MuiAutocomplete,
   WithOptionLabel,
 } from "../mui-controls/MuiAutocomplete";
-import { FormsSwitchInputWrapper } from "@/components/src/EnumInput/FormsSwitchInputWrapper";
+import { FormsSwitchInputWrapper } from "@forms/components/src/EnumInput/FormsSwitchInputWrapper";
 
 export const LensSwitchControl = (
   props: ControlProps & OwnPropsOfEnum & WithOptionLabel & TranslateProps

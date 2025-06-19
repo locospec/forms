@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from "react";
 const DEFAULT_OFFSET = 200;
 
 interface UseFetchMoreOnScrollInterface {
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   fetchNextPage: () => void;
   isFetching: boolean;
   hasNextPage: boolean;

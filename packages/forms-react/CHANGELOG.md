@@ -1,3 +1,31 @@
+# v0.0.4 (Wed May 14 2025)
+
+#### 🐛 Bug Fix
+
+- chore: handled error [#11](https://github.com/locospec/forms/pull/11) ([@rajeshn95](https://github.com/rajeshn95))
+- chore:updates in the classes [#10](https://github.com/locospec/forms/pull/10) ([@Avi060545](https://github.com/Avi060545))
+- chore: added containerRef to popover [#8](https://github.com/locospec/forms/pull/8) ([@ShreyDhyani](https://github.com/ShreyDhyani))
+- chore: updated package dependency [#8](https://github.com/locospec/forms/pull/8) ([@ShreyDhyani](https://github.com/ShreyDhyani))
+- chore: removed app/site [#8](https://github.com/locospec/forms/pull/8) ([@ShreyDhyani](https://github.com/ShreyDhyani))
+- chore: updated shadcn components to tailwindv4 [#8](https://github.com/locospec/forms/pull/8) ([@ShreyDhyani](https://github.com/ShreyDhyani))
+- chore: data persistence in form fields [#7](https://github.com/locospec/forms/pull/7) ([@Avi060545](https://github.com/Avi060545))
+- Date time form field and Refactored code [#6](https://github.com/locospec/forms/pull/6) ([@Avi060545](https://github.com/Avi060545))
+- pull from main repo ([@Avi060545](https://github.com/Avi060545))
+- refactored code ([@Avi060545](https://github.com/Avi060545))
+- date-time component and backend validation ([@Avi060545](https://github.com/Avi060545))
+- chore: fix for spelling mistake [#5](https://github.com/locospec/forms/pull/5) ([@ShreyDhyani](https://github.com/ShreyDhyani))
+- chore: added type to config [#5](https://github.com/locospec/forms/pull/5) ([@ShreyDhyani](https://github.com/ShreyDhyani))
+- chore: removed commented code [#5](https://github.com/locospec/forms/pull/5) ([@ShreyDhyani](https://github.com/ShreyDhyani))
+- chore: changed naem for example component [#4](https://github.com/locospec/forms/pull/4) ([@ShreyDhyani](https://github.com/ShreyDhyani))
+
+#### Authors: 3
+
+- [@Avi060545](https://github.com/Avi060545)
+- [@ShreyDhyani](https://github.com/ShreyDhyani)
+- Rajesh Nautiyal ([@rajeshn95](https://github.com/rajeshn95))
+
+---
+
 # v0.0.3 (Tue Apr 15 2025)
 
 #### 🐛 Bug Fix

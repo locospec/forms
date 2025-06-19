@@ -1,7 +1,7 @@
-import React, { createContext } from "react";
+import { useFetchConfig } from "@forms/hooks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useFetchConfig } from "@/hooks";
+import React, { createContext } from "react";
 
 const queryClient = new QueryClient();
 
@@ -59,7 +59,8 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     data: config,
     isFetched,
     isError,
-  } = useFetchConfig({
+    error,
+  }: any = useFetchConfig({
     configEndpoint,
     configCallback,
     permissionHeaders,
@@ -67,7 +68,6 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   });
 
   const configData = config?.data || {};
-  // const configMeta = config?.meta || {};
 
   const {
     model = "",
@@ -77,11 +77,12 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
     initialData,
   } = configData || {};
 
-  if (isFetched && (!model || !dbOp)) {
+  if (isFetched && (!model || !dbOp) && !isError) {
     throw new Error(
       "Missing required config: 'model' and 'dbOp' must be present."
     );
   }
+
   const actionEndpoint = `${endpoint}/_${dbOp}`;
 
   const [formErrors, setFormErrors] = React.useState([]);
@@ -90,11 +91,6 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
 
   const makeActionRequest = React.useCallback(
     async (data: Record<string, any>) => {
-      // if (formErrors.length > 0) {
-      //   console.log("Please resolve form errors");
-      //   throw new Error(`Error: ${formErrors.length} Errors found`);
-      // }
-
       try {
         const response = await fetch(actionEndpoint, {
           method: "POST",
@@ -105,10 +101,6 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
           body: JSON.stringify(data),
         });
         const responseData = await response.json();
-
-        // if (!response.ok) {
-        // throw new Error(`Error: ${response.statusText}`);
-        // }
 
         return await responseData;
       } catch (error) {
@@ -169,7 +161,14 @@ const FormsProviderBase: React.FC<FormsProviderBaseInterface> = ({
   );
 
   if (isError) {
-    return <div>Error</div>;
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="mt-4 text-4xl font-bold">
+          {error?.code} {error?.name}
+        </h1>
+        <p className="mt-2 max-w-md text-sm text-gray-600">{error?.message}</p>
+      </div>
+    );
   }
 
   return (
