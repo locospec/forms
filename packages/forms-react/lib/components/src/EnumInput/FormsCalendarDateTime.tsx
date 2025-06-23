@@ -61,13 +61,14 @@ const FormsCalendarDateTime: React.FC<FormsCalendarDateTimeInterface> = ({
     onChangeCallback?.(isoString);
   };
 
-  const handleDateSelect = (selectedDate: Date | undefined) => {
-    if (!selectedDate) return;
+  const handleDateSelect = (value: any) => {
+    if (!value) return;
+    const dateObj = value instanceof Date ? value : new Date(value.toString());
     const currentTime = selectedDateTime ?? new Date();
     const combinedDateTime = new Date(
-      selectedDate.getFullYear(),
-      selectedDate.getMonth(),
-      selectedDate.getDate(),
+      dateObj.getFullYear(),
+      dateObj.getMonth(),
+      dateObj.getDate(),
       currentTime.getHours(),
       currentTime.getMinutes()
     );
