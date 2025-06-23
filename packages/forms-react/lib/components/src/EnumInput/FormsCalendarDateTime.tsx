@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Calendar } from "@forms/base/calendar";
 import { Popover, PopoverTrigger, PopoverContent } from "@forms/base/popover";
 import { Input } from "@forms/base/input";
 import { Button } from "@forms/base/button";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, X } from "lucide-react";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 export interface FormsCalendarDateTimeInterface {
   onChangeCallback?: (val: string) => void;
@@ -26,9 +28,11 @@ const FormsCalendarDateTime: React.FC<FormsCalendarDateTimeInterface> = ({
   required = false,
   title,
 }) => {
+  const [open, setOpen] = useState(false);
   const [selectedDateTime, setSelectedDateTime] = useState<Date | undefined>(
     values ? new Date(values) : undefined
   );
+  const today = new Date();
 
   useEffect(() => {
     if (values) {
@@ -87,7 +91,7 @@ const FormsCalendarDateTime: React.FC<FormsCalendarDateTimeInterface> = ({
 
   return (
     <div className="w-full">
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant={"outline"}
@@ -133,18 +137,25 @@ const FormsCalendarDateTime: React.FC<FormsCalendarDateTimeInterface> = ({
           </Button>
         </PopoverTrigger>
         <PopoverContent className=" w-auto p-0" align="start">
-          <div className="mobile:flex">
-            <Calendar
-              mode="single"
-              classNames={{
-                nav_button_previous: "absolute left-1 border-none",
-                nav_button_next: "absolute right-1 border-none",
-              }}
-              selected={selectedDateTime}
-              onSelect={(e) => handleDateSelect(e)}
-              disabled={(date) => date < new Date()}
-              initialFocus
+          <div className="mobile:flex relative">
+            <X
+              onClick={() => setOpen(false)}
+              className="right-0 w-5 h-5 -top-1 hover:cursor-pointer absolute"
             />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <div className="rounded">
+                <DateCalendar
+                  className=""
+                  value={today}
+                  sx={{
+                    width: "100%",
+                    minWidth: 0,
+                    maxWidth: "100%",
+                  }}
+                  onChange={handleDateSelect}
+                />
+              </div>
+            </LocalizationProvider>
             <div className="px-6 py-1 mobile:py-3 border rounded-lg pl-16 mobile:pl-6  flex mobile:flex-col items-center">
               <p className="mb-2 mobile:mb-0">Time</p>
               <ul className="space-y-1 mobile:mt-3 ml-5 mobile:ml-0 overflow-y-auto  h-[90px]  mobile:h-[230px]">
