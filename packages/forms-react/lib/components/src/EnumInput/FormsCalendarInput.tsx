@@ -6,6 +6,7 @@ import { CalendarIcon } from "lucide-react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import { PickerValue } from "@mui/x-date-pickers/internals";
 
 export interface FormsCalendarInputInteface {
   onChangeCallback?: any;
@@ -44,12 +45,16 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
     }).format(dateObj);
   };
 
-  const handleDateSelect = (selectedDate: Date | undefined) => {
+  const handleDateSelect = (selectedDate: PickerValue) => {
     if (!selectedDate) return;
 
-    const year = selectedDate.getFullYear();
-    const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
-    const day = String(selectedDate.getDate()).padStart(2, "0");
+    const dateObj =
+      selectedDate instanceof Date
+        ? selectedDate
+        : new Date(selectedDate.toString());
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+    const day = String(dateObj.getDate()).padStart(2, "0");
     const formattedDate = `${year}-${month}-${day}`; // 'YYYY-MM-DD'
 
     onChangeCallback?.(formattedDate);
