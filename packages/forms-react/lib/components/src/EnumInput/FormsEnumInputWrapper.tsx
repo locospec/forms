@@ -27,9 +27,9 @@ export interface FormsEnumInputWrapperInterface {
   data: any;
 }
 
-const FormsEnumInputWrapper: React.FC<
-  FormsEnumInputWrapperInterface
-> = props => {
+const FormsEnumInputWrapper: React.FC<FormsEnumInputWrapperInterface> = (
+  props
+) => {
   const { baseEndpoint, formData, permissionHeaders, context } =
     useFormsContext();
   const { schema, path, handleChange, errors = null, required, data } = props;

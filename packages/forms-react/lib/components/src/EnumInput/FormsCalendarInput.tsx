@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Calendar } from "@forms/base/calendar";
 import { Popover, PopoverTrigger, PopoverContent } from "@forms/base/popover";
 import { Input } from "@forms/base/input";
 import { Button } from "@forms/base/button";
 import { CalendarIcon } from "lucide-react";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 export interface FormsCalendarInputInteface {
   onChangeCallback?: any;
@@ -26,8 +28,8 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
   required = false,
   title,
 }) => {
-  const [date, setDate] = useState<Date | undefined>(new Date(values));
   const [open, setOpen] = useState(false);
+  const today = new Date();
 
   const showDateFormat = (dateValue: string | Date | undefined) => {
     if (!dateValue) return "";
@@ -51,7 +53,6 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
     const formattedDate = `${year}-${month}-${day}`; // 'YYYY-MM-DD'
 
     onChangeCallback?.(formattedDate);
-    setDate(selectedDate);
     setValues?.(formattedDate);
     setOpen(false);
   };
@@ -96,17 +97,20 @@ const FormsCalendarInput: React.FC<FormsCalendarInputInteface> = ({
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
-          <Calendar
-            mode="single"
-            classNames={{
-              nav_button_previous: "absolute left-1 border-none",
-              nav_button_next: "absolute right-1 border-none",
-            }}
-            selected={date}
-            onSelect={(e) => handleDateSelect(e)}
-            disabled={(date) => date < new Date()}
-            initialFocus
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <div className="rounded">
+              <DateCalendar
+                className=""
+                value={today}
+                sx={{
+                  width: "100%",
+                  minWidth: 0,
+                  maxWidth: "100%",
+                }}
+                onChange={handleDateSelect}
+              />
+            </div>
+          </LocalizationProvider>
         </PopoverContent>
       </Popover>
       {errors && (
